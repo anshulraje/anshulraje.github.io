@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anshul Raje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --bg:       #f5f4f0;
+      --surface:  #eceae4;
+      --border:   #d6d3cb;
+      --text:     #1a1916;
+      --muted:    #6b6860;
+      --accent:   #2a52a0;
+      --accent-h: #1d3d7a;
+      --tag-bg:   #dde3f0;
+      --tag-fg:   #2a52a0;
+      --radius:   6px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:       #141412;
+        --surface:  #1e1d1a;
+        --border:   #2e2d29;
+        --text:     #edeae2;
+        --muted:    #8a877e;
+        --accent:   #6b93e8;
+        --accent-h: #8aadf0;
+        --tag-bg:   #1e2a42;
+        --tag-fg:   #6b93e8;
+      }
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-h); text-decoration: underline; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 96px 0 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-bio {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-h);
+      color: #fff;
+      text-decoration: none;
+    }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 40px; }
+    .exp-item {}
+    .exp-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .exp-org {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+    .exp-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .exp-role {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .exp-desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 560px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .project-card-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .project-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      line-height: 1.25;
+    }
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-card-footer {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .project-card.minor {
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+    }
+    .project-card.minor .minor-text { flex: 1; }
+    .project-card.minor p { margin-top: 6px; }
+    @media (max-width: 560px) {
+      .project-card.minor { grid-column: span 1; flex-direction: column; }
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 28px; }
+    .edu-item {}
+    .edu-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .edu-school {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+    }
+    .edu-date { font-size: 0.8rem; color: var(--muted); }
+    .edu-degree { font-size: 0.9rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── FADE IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero > * {
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero .hero-label  { animation-delay: 0.05s; }
+    .hero h1           { animation-delay: 0.12s; }
+    .hero .hero-bio    { animation-delay: 0.2s; }
+    .hero .hero-links  { animation-delay: 0.28s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-name">Anshul Raje</a>
+      <ul class="nav-links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <p class="hero-label">Robotics Engineer</p>
+      <h1>Building robots that<br><em>move and see.</em></h1>
+      <p class="hero-bio">
+        I'm a robotics engineer starting my MS in Robotics Engineering at WPI in Fall 2026.
+        My work spans locomotion control, state estimation, and perception systems —
+        mostly on quadruped robots and autonomous vehicles, mostly in ROS 2.
+        I'm a U.S. citizen based in Bangalore, heading to Worcester, MA.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:anshulraje.contact@gmail.com" class="btn btn-primary">Get in touch</a>
+        <a href="https://linkedin.com/in/anshulraje" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/anshulraje" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="assets/Anshul_Raje_Resume.pdf" target="_blank" class="btn btn-ghost">Résumé</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-org">Strider Robotics</span>
+            <span class="exp-date">Aug 2024 — Apr 2026</span>
+          </div>
+          <p class="exp-role">Associate Robotics Engineer · Bangalore, India</p>
+          <p class="exp-desc">
+            Started on the systems team working on locomotion control, state estimation,
+            and hardware integration for a quadruped robot. Moved to the autonomy team in early 2026,
+            where I designed and built a modular ROS 2 perception framework for autonomous industrial
+            inspection — deployed on real robots for Fortune 500 clients.
+          </p>
+          <div class="exp-tags">
+            <span class="tag">ROS 2</span>
+            <span class="tag">MPC</span>
+            <span class="tag">Kalman Filter</span>
+            <span class="tag">YOLO</span>
+            <span class="tag">Behavior Trees</span>
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-org">HiPeRT Lab, University of Modena</span>
+            <span class="exp-date">Jul — Dec 2023</span>
+          </div>
+          <p class="exp-role">Research Intern · Modena, Italy</p>
+          <p class="exp-desc">
+            Six months in Italy working with the RoboRacer.ai F1/10 autonomous racing team.
+            Developed a synthetic dataset generation pipeline and trained a YOLOv4 detector
+            for opponent car detection, achieving 97% accuracy. Also implemented an MPC-curve
+            controller that replaced the existing Pure Pursuit controller and got lateral error
+            under 2 cm.
+          </p>
+          <div class="exp-tags">
+            <span class="tag">YOLOv4</span>
+            <span class="tag">MPC</span>
+            <span class="tag">Synthetic Data</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">F1/10</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-org">Spaceonova</span>
+            <span class="exp-date">Jan — Apr 2022</span>
+          </div>
+          <p class="exp-role">Technical Trainer · Remote</p>
+          <p class="exp-desc">
+            Delivered lectures on robotics fundamentals to 250+ students across 20+ colleges,
+            covering ROS, URDF, path planning algorithms, and computer vision with OpenCV.
+          </p>
+          <div class="exp-tags">
+            <span class="tag">ROS</span>
+            <span class="tag">URDF</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Path Planning</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <div class="projects-grid">
+
+        <a href="kratos.html" class="project-card">
+          <span class="project-card-label">2021 — 2023</span>
+          <h3>Project Kratos</h3>
+          <p>
+            Controls Lead for BITS Goa's Mars Rover team. Autonomous navigation,
+            5-DOF robotic arm, and international competition — 2nd place globally
+            at the Anatolian Rover Challenge.
+          </p>
+          <span class="project-card-footer">View project →</span>
+        </a>
+
+        <a href="f110.html" class="project-card">
+          <span class="project-card-label">2023 · HiPeRT Lab</span>
+          <h3>F1/10 Autonomous Racing</h3>
+          <p>
+            Synthetic dataset generation for opponent detection and MPC-based
+            trajectory tracking on a 1/10th scale autonomous race car.
+          </p>
+          <span class="project-card-footer">View project →</span>
+        </a>
+
+        <a href="strider.html" class="project-card">
+          <span class="project-card-label">2024 — 2026 · Strider Robotics</span>
+          <h3>Quadruped Autonomy & Perception</h3>
+          <p>
+            From locomotion control to a full perception orchestration framework —
+            two years building software for robots that walk and see in the real world.
+          </p>
+          <span class="project-card-footer">View project →</span>
+        </a>
+
+        <a href="https://github.com/anshulraje/Stanley-Controller" target="_blank" class="project-card">
+          <span class="project-card-label">Open Source</span>
+          <h3>Stanley Controller</h3>
+          <p>
+            Implementation of the Stanley path-following controller in Python,
+            with a live visualiser. Used on the Kratos Mars Rover.
+          </p>
+          <span class="project-card-footer">View on GitHub →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Education</p>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div class="edu-header">
+            <span class="edu-school">Worcester Polytechnic Institute</span>
+            <span class="edu-date">Aug 2026 — Present</span>
+          </div>
+          <p class="edu-degree">M.Sc. Robotics Engineering · Worcester, MA</p>
+        </div>
+        <div class="edu-item">
+          <div class="edu-header">
+            <span class="edu-school">BITS Pilani, K.K. Birla Goa Campus</span>
+            <span class="edu-date">Sept 2020 — Jul 2024</span>
+          </div>
+          <p class="edu-degree">B.E. Electronics and Communication Engineering · CGPA 8.04/10</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <p style="color:var(--muted); margin-bottom: 24px; max-width: 480px;">
+        I'm always happy to chat about robotics, research, or potential opportunities.
+      </p>
+      <div class="contact-row">
+        <a href="mailto:anshulraje.contact@gmail.com" class="btn btn-primary">anshulraje.contact@gmail.com</a>
+        <a href="https://linkedin.com/in/anshulraje" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://github.com/anshulraje" target="_blank" class="btn btn-ghost">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Anshul Raje · <a href="https://github.com/anshulraje/anshulraje.github.io">Built with plain HTML</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
