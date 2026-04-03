@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1/10 Autonomous Racing · Anshul Raje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #f5f4f0;
+      --surface:  #eceae4;
+      --border:   #d6d3cb;
+      --text:     #1a1916;
+      --muted:    #6b6860;
+      --accent:   #2a52a0;
+      --accent-h: #1d3d7a;
+      --tag-bg:   #dde3f0;
+      --tag-fg:   #2a52a0;
+      --radius:   6px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:       #141412;
+        --surface:  #1e1d1a;
+        --border:   #2e2d29;
+        --text:     #edeae2;
+        --muted:    #8a877e;
+        --accent:   #6b93e8;
+        --accent-h: #8aadf0;
+        --tag-bg:   #1e2a42;
+        --tag-fg:   #6b93e8;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-h); text-decoration: underline; }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: var(--text); text-decoration: none;
+    }
+    .nav-back { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
+    .hero-label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15; margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 0.875rem; color: var(--muted); margin-bottom: 24px;
+    }
+    .hero-desc {
+      max-width: 620px; color: var(--muted);
+      font-size: 1rem; line-height: 1.75;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .tag {
+      font-size: 0.75rem; font-weight: 500;
+      padding: 3px 10px; border-radius: 100px;
+      background: var(--tag-bg); color: var(--tag-fg);
+    }
+
+    /* SECTIONS */
+    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 32px;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem; margin-bottom: 16px; color: var(--text);
+    }
+    h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; margin-bottom: 10px; color: var(--text);
+    }
+    p { color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* MEDIA GRID — 2 col */
+    .media-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 24px 0;
+    }
+    @media (max-width: 520px) { .media-grid { grid-template-columns: 1fr; } }
+    .media-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 24px 0;
+    }
+    @media (max-width: 520px) { .media-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    .media-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px;
+      font-size: 0.75rem; color: var(--muted);
+      text-align: center; padding: 16px;
+    }
+    .media-placeholder span { font-size: 1.4rem; opacity: 0.4; }
+    .media-img {
+      width: 100%; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      object-fit: cover;
+    }
+    .media-caption {
+      font-size: 0.78rem; color: var(--muted);
+      text-align: center; margin-top: -4px; margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* THESIS CARD */
+    .thesis-card {
+      display: flex; align-items: center; gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      text-decoration: none; color: var(--text);
+      transition: border-color 0.2s;
+      margin-top: 24px;
+    }
+    .thesis-card:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
+    .thesis-icon { font-size: 2rem; flex-shrink: 0; }
+    .thesis-body {}
+    .thesis-title { font-weight: 500; font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
+    .thesis-sub { font-size: 0.82rem; color: var(--muted); margin: 0; }
+    .thesis-link { font-size: 0.8rem; color: var(--accent); margin-top: 6px; margin-bottom: 0; }
+
+    /* FOOTER */
+    footer { padding: 32px 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="nav-name">Anshul Raje</a>
+      <a href="index.html" class="nav-back">← Back</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <p class="hero-label">Research Internship · HiPeRT Lab, University of Modena and Reggio Emilia</p>
+      <h1>F1/10 Autonomous Racing</h1>
+      <div class="hero-meta">
+        <span>📅 Jul — Dec 2023</span>
+        <span>📍 Modena, Italy</span>
+        <span>👤 Research Intern</span>
+        <span>🧑‍🏫 Supervisor: Dr. Paolo Burgio</span>
+      </div>
+      <p class="hero-desc">
+        RoboRacer.ai (formerly known as F1/10) is an international autonomous racing platform — 1/10th scale cars racing
+        head-to-head, fully autonomously. I spent six months at HiPeRT Lab in Modena as
+        part of the RoboRacer.ai team, working on two distinct problems: teaching the car
+        to see its opponents, and teaching it to follow a racing line smoothly. This work
+        also formed the basis of my undergraduate thesis.
+      </p>
+      <div class="tags">
+        <span class="tag">YOLOv4</span>
+        <span class="tag">Synthetic Data Generation</span>
+        <span class="tag">MPC</span>
+        <span class="tag">Trajectory Tracking</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">Python</span>
+        <span class="tag">F1/10 Gym</span>
+        <span class="tag">Darknet ROS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYNTHETIC DATASET -->
+  <section id="perception">
+    <div class="container">
+      <p class="section-label">Part 1 · Perception</p>
+      <h2>Synthetic Dataset Generation for Opponent Detection</h2>
+      <p>
+        The first challenge: the car needs to detect opponent cars on the track in real time.
+        Collecting a real annotated dataset for this is expensive and time-consuming —
+        you'd need to run the cars, photograph every scenario, and label each frame by hand.
+      </p>
+      <p>
+        Instead, I developed a novel algorithm for <strong style="color:var(--text)">synthetic dataset generation</strong> —
+        automatically producing unique, annotated training images by compositing rendered car
+        images onto real track background photographs at varying positions, scales, orientations,
+        and lighting conditions. Every image in the dataset was unique and came with automatic
+        bounding box annotations, with no manual labelling required.
+      </p>
+      <p>
+        Using this pipeline I generated a dataset of <strong style="color:var(--text)">1500+ images</strong>,
+        then trained a YOLOv4 model using Darknet. The model achieved
+        <strong style="color:var(--text)">97% detection accuracy</strong> on real test footage from the F1/10 car.
+      </p>
+
+      <h3 style="margin-top: 32px;">Generated Dataset Examples</h3>
+      <div class="media-grid-3">
+        <!-- Replace with: <img src="assets/images/f110/synth_1.jpg" alt="..." class="media-img"> -->
+        <div class="media-placeholder"><span>🖼</span>Synthetic image example</div>
+        <div class="media-placeholder"><span>🖼</span>Synthetic image example</div>
+        <div class="media-placeholder"><span>🖼</span>Synthetic image example</div>
+        <div class="media-placeholder"><span>🖼</span>Synthetic image example</div>
+        <div class="media-placeholder"><span>🖼</span>Synthetic image example</div>
+        <div class="media-placeholder"><span>🖼</span>Synthetic image example</div>
+      </div>
+
+      <h3>Predictions on Real Footage</h3>
+      <div class="media-grid">
+        <!-- Replace with real prediction images -->
+        <div class="media-placeholder"><span>🖼</span>YOLOv4 prediction on real image</div>
+        <div class="media-placeholder"><span>🖼</span>YOLOv4 prediction on real image</div>
+        <div class="media-placeholder"><span>🖼</span>YOLOv4 prediction on real image</div>
+        <div class="media-placeholder"><span>🖼</span>YOLOv4 prediction on real image</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MPC -->
+  <section id="control">
+    <div class="container">
+      <p class="section-label">Part 2 · Control</p>
+      <h2>MPC-Curv: Trajectory Tracking for High-Speed Racing</h2>
+      <p>
+        The second problem: the car's existing Pure Pursuit controller was underperforming
+        at high speeds — struggling to track the racing line accurately through tight corners.
+        I developed and integrated an <strong style="color:var(--text)">MPC-curve (MPC-Curv) controller</strong>
+        to replace it.
+      </p>
+      <p>
+        The controller uses a <strong style="color:var(--text)">kinematic bicycle model</strong> to
+        represent vehicle dynamics, and spline-based trajectory representation for smooth,
+        continuous path tracking. At each timestep, the MPC solves an optimisation problem
+        over a receding horizon, minimising lateral deviation from the racing line while
+        respecting velocity and steering constraints.
+      </p>
+      <p>
+        Validated in the F1/10 gym simulator on the Las Vegas track, achieving a
+        <strong style="color:var(--text)">mean lateral error of under 2 cm</strong> — a significant
+        improvement over the Pure Pursuit baseline.
+      </p>
+
+      <h3 style="margin-top: 32px;">Kinematic Model</h3>
+      <div class="media-grid">
+        <!-- Replace with: <img src="assets/images/f110/kinematic_model.png" alt="Kinematic bicycle model" class="media-img"> -->
+        <div class="media-placeholder"><span>🖼</span>Kinematic single-track model diagram</div>
+        <div class="media-placeholder"><span>🖼</span>MPC prediction trajectory (splines)</div>
+      </div>
+      <div class="media-grid">
+        <div>
+          <div class="media-placeholder"><span>🖼</span>Path planning using splines — Las Vegas track</div>
+        </div>
+        <div>
+          <div class="media-placeholder"><span>🖼</span>Lateral error over time — MPC vs Pure Pursuit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THESIS -->
+  <section id="thesis">
+    <div class="container">
+      <p class="section-label">Undergraduate Thesis</p>
+      <h2>Written Work</h2>
+      <p>
+        Both projects formed the basis of my undergraduate thesis, submitted as part of my
+        B.E. at BITS Goa. It covers the full methodology and implementation of the
+        synthetic dataset pipeline and the MPC-Curv controller in detail.
+      </p>
+      <a href="https://anshulraje.weebly.com/uploads/1/4/3/4/143447269/thesis_report_2020aats1024g.pdf"
+         target="_blank" class="thesis-card">
+        <div class="thesis-icon">📄</div>
+        <div class="thesis-body">
+          <p class="thesis-title">Application of Machine Learning for Perception and Control Algorithms of High-Speed Autonomous Racing Vehicles</p>
+          <p class="thesis-sub">B.E. Undergraduate Thesis · BITS Goa, 2023</p>
+          <p class="thesis-link">Download PDF ↗</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p><a href="index.html">← Back to Anshul Raje</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
