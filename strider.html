@@ -70,7 +70,7 @@
     }
 
     .container {
-      max-width: 780px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -111,6 +111,43 @@
     }
 
     /* HERO */
+    .hero-container {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-image {
+      flex: 1;
+      max-width: 450px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-image {
+        max-width: 100%;
+        margin-top: 24px;
+      }
+    }
+
     .hero {
       padding: 72px 0 56px;
       border-bottom: 1px solid var(--border);
@@ -177,12 +214,13 @@
     }
 
     .section-label {
-      font-size: 0.75rem;
+      font-size: 1.25rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 32px;
+      text-align: center;
     }
 
     h2 {
@@ -383,30 +421,35 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="container">
-      <p class="hero-label">Full-Time · Strider Robotics</p>
-      <h1>Quadruped Autonomy<br>&amp; Perception</h1>
-      <div class="hero-meta">
-        <span>📅 Aug 2024 — Apr 2026</span>
-        <span>📍 Bangalore, India</span>
-        <span>👤 Associate Robotics Engineer</span>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <p class="hero-label">Full-Time · Strider Robotics</p>
+        <h1>Quadruped Autonomy<br>&amp; Perception</h1>
+        <div class="hero-meta">
+          <span>📅 Aug 2024 — Apr 2026</span>
+          <span>📍 Bangalore, India</span>
+          <span>👤 Associate Robotics Engineer</span>
+        </div>
+        <p class="hero-desc">
+          Two years at Strider Robotics building software for legged robots that operate in the real world.
+          I started on the systems side — locomotion control, state estimation, and hardware integration
+          for a quadruped robot — then moved to the autonomy team, where I designed and built a full
+          perception framework for autonomous industrial inspection, deployed on real robots for Fortune 500 clients.
+        </p>
+        <div class="tags">
+          <span class="tag">ROS 2</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+          <span class="tag">MPC</span>
+          <span class="tag">Kalman Filter</span>
+          <span class="tag">YOLO</span>
+          <span class="tag">Behavior Trees</span>
+          <span class="tag">Lifecycle Nodes</span>
+          <span class="tag">Docker</span>
+        </div>
       </div>
-      <p class="hero-desc">
-        Two years at Strider Robotics building software for legged robots that operate in the real world.
-        I started on the systems side — locomotion control, state estimation, and hardware integration
-        for a quadruped robot — then moved to the autonomy team, where I designed and built a full
-        perception framework for autonomous industrial inspection, deployed on real robots for Fortune 500 clients.
-      </p>
-      <div class="tags">
-        <span class="tag">ROS 2</span>
-        <span class="tag">C++</span>
-        <span class="tag">Python</span>
-        <span class="tag">MPC</span>
-        <span class="tag">Kalman Filter</span>
-        <span class="tag">YOLO</span>
-        <span class="tag">Behavior Trees</span>
-        <span class="tag">Lifecycle Nodes</span>
-        <span class="tag">Docker</span>
+      <div class="hero-image">
+        <img src="assets/strider/mulev2.avif" alt="Strider Quadruped Robot" />
       </div>
     </div>
   </div>
@@ -453,7 +496,7 @@
           </div>
           <div class="phase-right">
             <p class="phase-period">Jan 2026 — Apr 2026 · Autonomy &amp; Perception</p>
-            <h3>Teaching the Robot to See and Decide</h3>
+            <h3>Teaching the Robot to See and Understand</h3>
             <p>
               In early 2026 I moved to the autonomy team. The goal was to take the robot — which
               could already walk — and turn it into an autonomous industrial inspector capable of
@@ -556,7 +599,7 @@
           <div class="stat-label">Configuration in YAML</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">Fortune<br>500</div>
+          <div class="stat-value">Fortune 500</div>
           <div class="stat-label">Deployed for real clients</div>
         </div>
       </div>
