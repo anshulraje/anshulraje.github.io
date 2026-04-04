@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>F1/10 Autonomous Racing · Anshul Raje</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      --bg:       #f5f4f0;
-      --surface:  #eceae4;
-      --border:   #d6d3cb;
-      --text:     #1a1916;
-      --muted:    #6b6860;
-      --accent:   #2a52a0;
+      --bg: #f5f4f0;
+      --surface: #eceae4;
+      --border: #d6d3cb;
+      --text: #1a1916;
+      --muted: #6b6860;
+      --accent: #2a52a0;
       --accent-h: #1d3d7a;
-      --tag-bg:   #dde3f0;
-      --tag-fg:   #2a52a0;
-      --radius:   6px;
+      --tag-bg: #dde3f0;
+      --tag-fg: #2a52a0;
+      --radius: 6px;
     }
+
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg:       #141412;
-        --surface:  #1e1d1a;
-        --border:   #2e2d29;
-        --text:     #edeae2;
-        --muted:    #8a877e;
-        --accent:   #6b93e8;
+        --bg: #141412;
+        --surface: #1e1d1a;
+        --border: #2e2d29;
+        --text: #edeae2;
+        --muted: #8a877e;
+        --accent: #6b93e8;
         --accent-h: #8aadf0;
-        --tag-bg:   #1e2a42;
-        --tag-fg:   #6b93e8;
+        --tag-bg: #1e2a42;
+        --tag-fg: #6b93e8;
       }
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
@@ -44,70 +58,150 @@
       line-height: 1.7;
       font-size: 16px;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-h); text-decoration: underline; }
 
-    .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-h);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
     /* NAV */
     nav {
-      position: sticky; top: 0; z-index: 100;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
     }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .nav-name {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem; color: var(--text); text-decoration: none;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
     }
-    .nav-back { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-back:hover { color: var(--text); text-decoration: none; }
+
+    .nav-back {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
 
     /* HERO */
-    .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--border); }
-    .hero-label {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 16px;
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
     }
+
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
     .hero h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.15; margin-bottom: 20px;
+      line-height: 1.15;
+      margin-bottom: 20px;
     }
+
     .hero-meta {
-      display: flex; flex-wrap: wrap; gap: 20px;
-      font-size: 0.875rem; color: var(--muted); margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 24px;
     }
+
     .hero-desc {
-      max-width: 780px; color: var(--muted);
-      font-size: 1rem; line-height: 1.75;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
     .tag {
-      font-size: 0.75rem; font-weight: 500;
-      padding: 3px 10px; border-radius: 100px;
-      background: var(--tag-bg); color: var(--tag-fg);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
     }
 
     /* SECTIONS */
-    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
-    .section-label {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 32px;
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
     }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
     h2 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.6rem; margin-bottom: 16px; color: var(--text);
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      color: var(--text);
     }
+
     h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem; margin-bottom: 10px; color: var(--text);
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: var(--text);
     }
-    p { color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
-    p:last-child { margin-bottom: 0; }
+
+    p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
 
     /* MEDIA GRID — 2 col */
     .media-grid {
@@ -116,59 +210,121 @@
       gap: 10px;
       margin: 24px 0;
     }
-    @media (max-width: 520px) { .media-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 520px) {
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .media-grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
       margin: 24px 0;
     }
-    @media (max-width: 520px) { .media-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+
+    @media (max-width: 520px) {
+      .media-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     .media-placeholder {
       aspect-ratio: 4/3;
       background: var(--surface);
       border: 1px dashed var(--border);
       border-radius: var(--radius);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       gap: 6px;
-      font-size: 0.75rem; color: var(--muted);
-      text-align: center; padding: 16px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 16px;
     }
-    .media-placeholder span { font-size: 1.4rem; opacity: 0.4; }
+
+    .media-placeholder span {
+      font-size: 1.4rem;
+      opacity: 0.4;
+    }
+
     .media-img {
-      width: 100%; border-radius: var(--radius);
+      width: 100%;
+      border-radius: var(--radius);
       border: 1px solid var(--border);
       object-fit: cover;
     }
+
     .media-caption {
-      font-size: 0.78rem; color: var(--muted);
-      text-align: center; margin-top: -4px; margin-bottom: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: -4px;
+      margin-bottom: 0;
       font-style: italic;
     }
 
     /* THESIS CARD */
     .thesis-card {
-      display: flex; align-items: center; gap: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px 28px;
-      text-decoration: none; color: var(--text);
+      text-decoration: none;
+      color: var(--text);
       transition: border-color 0.2s;
       margin-top: 24px;
     }
-    .thesis-card:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
-    .thesis-icon { font-size: 2rem; flex-shrink: 0; }
+
+    .thesis-card:hover {
+      border-color: var(--accent);
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .thesis-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
     .thesis-body {}
-    .thesis-title { font-weight: 500; font-size: 0.95rem; color: var(--text); margin-bottom: 4px; }
-    .thesis-sub { font-size: 0.82rem; color: var(--muted); margin: 0; }
-    .thesis-link { font-size: 0.8rem; color: var(--accent); margin-top: 6px; margin-bottom: 0; }
+
+    .thesis-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .thesis-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .thesis-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
 
     /* FOOTER */
-    footer { padding: 32px 0; text-align: center; font-size: 0.8rem; color: var(--muted); }
+    footer {
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -220,7 +376,8 @@
         you'd need to run the cars, photograph every scenario, and label each frame by hand.
       </p>
       <p>
-        Instead, I developed a novel algorithm for <strong style="color:var(--text)">synthetic dataset generation</strong> —
+        Instead, I developed a novel algorithm for <strong style="color:var(--text)">synthetic dataset
+          generation</strong> —
         automatically producing unique, annotated training images by compositing rendered car
         images onto real track background photographs at varying positions, scales, orientations,
         and lighting conditions. Every image in the dataset was unique and came with automatic
@@ -305,11 +462,11 @@
         B.E. at BITS Goa. It covers the full methodology and implementation of the
         synthetic dataset pipeline and the MPC-Curv controller in detail.
       </p>
-      <a href="assets/f110/docs/thesis_report_2020aats1024g.pdf"
-         target="_blank" class="thesis-card">
+      <a href="assets/f110/thesis_report_2020aats1024g.pdf" target="_blank" class="thesis-card">
         <div class="thesis-icon">📄</div>
         <div class="thesis-body">
-          <p class="thesis-title">Application of Machine Learning for Perception and Control Algorithms of High-Speed Autonomous Racing Vehicles</p>
+          <p class="thesis-title">Application of Machine Learning for Perception and Control Algorithms of High-Speed
+            Autonomous Racing Vehicles</p>
           <p class="thesis-sub">B.E. Undergraduate Thesis · BITS Goa, 2023</p>
           <p class="thesis-link">Download PDF ↗</p>
         </div>
@@ -321,8 +478,8 @@
   <section id="note">
     <div class="container">
       <p class="section-label">A Note on Code Access</p>
-      <p style="max-width: 780px;">
-        Most of the code from this role lives in private organisational repositories. So, I can't 
+      <p style="max-width: 1200px;">
+        All code from this role lives in private organisational repositories. So, unfortunately, I can't
         link to it directly.
       </p>
     </div>
@@ -336,4 +493,5 @@
   </footer>
 
 </body>
+
 </html>

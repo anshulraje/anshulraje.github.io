@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Strider Robotics · Anshul Raje</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
-      --bg:       #f5f4f0;
-      --surface:  #eceae4;
-      --border:   #d6d3cb;
-      --text:     #1a1916;
-      --muted:    #6b6860;
-      --accent:   #2a52a0;
+      --bg: #f5f4f0;
+      --surface: #eceae4;
+      --border: #d6d3cb;
+      --text: #1a1916;
+      --muted: #6b6860;
+      --accent: #2a52a0;
       --accent-h: #1d3d7a;
-      --tag-bg:   #dde3f0;
-      --tag-fg:   #2a52a0;
-      --radius:   6px;
+      --tag-bg: #dde3f0;
+      --tag-fg: #2a52a0;
+      --radius: 6px;
     }
+
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg:       #141412;
-        --surface:  #1e1d1a;
-        --border:   #2e2d29;
-        --text:     #edeae2;
-        --muted:    #8a877e;
-        --accent:   #6b93e8;
+        --bg: #141412;
+        --surface: #1e1d1a;
+        --border: #2e2d29;
+        --text: #edeae2;
+        --muted: #8a877e;
+        --accent: #6b93e8;
         --accent-h: #8aadf0;
-        --tag-bg:   #1e2a42;
-        --tag-fg:   #6b93e8;
+        --tag-bg: #1e2a42;
+        --tag-fg: #6b93e8;
       }
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
@@ -44,87 +58,173 @@
       line-height: 1.7;
       font-size: 16px;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-h); text-decoration: underline; }
 
-    .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-h);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
     /* NAV */
     nav {
-      position: sticky; top: 0; z-index: 100;
+      position: sticky;
+      top: 0;
+      z-index: 100;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
     }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .nav-name {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem; color: var(--text); text-decoration: none;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
     }
+
     .nav-back {
-      font-size: 0.875rem; color: var(--muted);
-      text-decoration: none; transition: color 0.2s;
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
     }
-    .nav-back:hover { color: var(--text); text-decoration: none; }
+
+    .nav-back:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
 
     /* HERO */
     .hero {
       padding: 72px 0 56px;
       border-bottom: 1px solid var(--border);
     }
+
     .hero-label {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 16px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
+
     .hero h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.15; margin-bottom: 20px;
+      line-height: 1.15;
+      margin-bottom: 20px;
     }
+
     .hero-meta {
-      display: flex; flex-wrap: wrap; gap: 20px;
-      font-size: 0.875rem; color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.875rem;
+      color: var(--muted);
       margin-bottom: 24px;
     }
-    .hero-meta span { display: flex; align-items: center; gap: 6px; }
-    .hero-desc {
-      max-width: 780px; color: var(--muted);
-      font-size: 1rem; line-height: 1.75;
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+
+    .hero-desc {
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
     .tag {
-      font-size: 0.75rem; font-weight: 500;
-      padding: 3px 10px; border-radius: 100px;
-      background: var(--tag-bg); color: var(--tag-fg);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
     }
 
     /* SECTIONS */
-    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
-    .section-label {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 32px;
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
     }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
     h2 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem; margin-bottom: 16px;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
     }
+
     h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem; margin-bottom: 8px; color: var(--text);
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--text);
     }
-    p { color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
-    p:last-child { margin-bottom: 0; }
+
+    p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
 
     /* PHASE TIMELINE */
-    .phase-list { display: flex; flex-direction: column; gap: 0; }
+    .phase-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
     .phase-item {
       display: flex;
       gap: 24px;
       position: relative;
     }
-    .phase-item + .phase-item { margin-top: 32px; }
+
+    .phase-item+.phase-item {
+      margin-top: 32px;
+    }
+
     .phase-left {
       display: flex;
       flex-direction: column;
@@ -132,29 +232,52 @@
       flex-shrink: 0;
       width: 40px;
     }
+
     .phase-dot {
-      width: 10px; height: 10px; border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
       background: var(--accent);
       flex-shrink: 0;
       margin-top: 6px;
     }
+
     .phase-line {
       width: 1px;
       background: var(--border);
       flex: 1;
       margin-top: 6px;
     }
-    .phase-item:last-child .phase-line { display: none; }
-    .phase-right { flex: 1; padding-bottom: 32px; }
-    .phase-item:last-child .phase-right { padding-bottom: 0; }
+
+    .phase-item:last-child .phase-line {
+      display: none;
+    }
+
+    .phase-right {
+      flex: 1;
+      padding-bottom: 32px;
+    }
+
+    .phase-item:last-child .phase-right {
+      padding-bottom: 0;
+    }
+
     .phase-period {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
     }
 
     /* TECH GRID */
-    .tech-list { display: flex; flex-direction: column; gap: 32px; }
+    .tech-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
     .tech-item {}
 
     /* ARCH CARD */
@@ -165,9 +288,18 @@
       padding: 28px;
       margin-top: 24px;
     }
-    .arch-card h3 { margin-bottom: 16px; }
 
-    .layer-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .arch-card h3 {
+      margin-bottom: 16px;
+    }
+
+    .layer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
     .layer-row {
       display: flex;
       align-items: center;
@@ -177,24 +309,36 @@
       border-radius: var(--radius);
       padding: 12px 16px;
     }
+
     .layer-num {
       font-family: 'DM Serif Display', serif;
       font-size: 1.1rem;
       color: var(--accent);
       min-width: 24px;
     }
+
     .layer-body {}
+
     .layer-name {
-      font-weight: 500; font-size: 0.9rem;
-      color: var(--text); margin-bottom: 2px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text);
+      margin-bottom: 2px;
     }
-    .layer-desc { font-size: 0.82rem; color: var(--muted); }
+
+    .layer-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
 
     /* STAT ROW */
     .stat-row {
-      display: flex; flex-wrap: wrap; gap: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
       margin-top: 24px;
     }
+
     .stat-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -203,6 +347,7 @@
       flex: 1;
       min-width: 140px;
     }
+
     .stat-value {
       font-family: 'DM Serif Display', serif;
       font-size: 1.8rem;
@@ -210,15 +355,22 @@
       line-height: 1;
       margin-bottom: 4px;
     }
-    .stat-label { font-size: 0.82rem; color: var(--muted); }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
 
     /* FOOTER */
     footer {
-      padding: 32px 0; text-align: center;
-      font-size: 0.8rem; color: var(--muted);
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -266,32 +418,32 @@
       <div class="phase-list">
 
         <div class="phase-item">
-            <div class="phase-left">
-              <div class="phase-dot"></div>
-              <div class="phase-line"></div>
-            </div>
-            <div class="phase-right">
-              <p class="phase-period">Aug 2024 — Dec 2025 · Systems &amp; Controls</p>
-              <h3>Making the Robot Walk Reliably</h3>
-              <p>
-                The first year and a half was about the fundamentals of legged locomotion —
-                getting the robot to move reliably and know where it is at all times.
-                This meant working deep in the control stack: integrating MPC-based control
-                with foothold optimisation for stable traversal on uneven terrain, implementing
-                fall recovery strategies for autonomous self-righting, and building a state estimator
-                that worked without GPS.
-              </p>
-              <p>
-                On the hardware side, I engineered a custom CAN transport layer for Strider's
-                in-house motor drivers: integrated as a ROS 2 Control hardware interface across
-                12 actuators, with a 300% throughput improvement over the previous implementation.
-              </p>
-              <p>
-                I also built automated actuator characterisation pipelines to identify actuator
-                dynamics, which directly reduced the sim-to-real gap and sped up reinforcement
-                learning experiments.
-              </p>
-            </div>
+          <div class="phase-left">
+            <div class="phase-dot"></div>
+            <div class="phase-line"></div>
+          </div>
+          <div class="phase-right">
+            <p class="phase-period">Aug 2024 — Dec 2025 · Systems &amp; Controls</p>
+            <h3>Making the Robot Walk Reliably</h3>
+            <p>
+              The first year and a half was about the fundamentals of legged locomotion —
+              getting the robot to move reliably and know where it is at all times.
+              This meant working deep in the control stack: integrating MPC-based control
+              with foothold optimisation for stable traversal on uneven terrain, implementing
+              fall recovery strategies for autonomous self-righting, and building a state estimator
+              that worked without GPS.
+            </p>
+            <p>
+              On the hardware side, I engineered a custom CAN transport layer for Strider's
+              in-house motor drivers: integrated as a ROS 2 Control hardware interface across
+              12 actuators, with a 300% throughput improvement over the previous implementation.
+            </p>
+            <p>
+              I also built automated actuator characterisation pipelines to identify actuator
+              dynamics, which directly reduced the sim-to-real gap and sped up reinforcement
+              learning experiments.
+            </p>
+          </div>
         </div>
 
         <div class="phase-item">
@@ -357,20 +509,20 @@
         </div>
 
         <div class="tech-item">
-            <h3>Hardware Integration — CAN Transport Layer</h3>
-            <p>
-              Engineered a custom CAN transport layer for Strider's in-house motor drivers, integrated
-              as a ROS 2 Control hardware interface. The implementation handles real-time communication
-              across 12 actuators simultaneously — achieving a 300% improvement in throughput over the
-              previous implementation, with under 1 PPM data loss under sustained load.
-            </p>
-            <p>
-              The transport layer abstracts the CAN bus behind the standard ROS 2 Control
-              <code style="font-family: monospace; font-size: 0.88em; background: var(--surface);
+          <h3>Hardware Integration — CAN Transport Layer</h3>
+          <p>
+            Engineered a custom CAN transport layer for Strider's in-house motor drivers, integrated
+            as a ROS 2 Control hardware interface. The implementation handles real-time communication
+            across 12 actuators simultaneously — achieving a 300% improvement in throughput over the
+            previous implementation, with under 1 PPM data loss under sustained load.
+          </p>
+          <p>
+            The transport layer abstracts the CAN bus behind the standard ROS 2 Control
+            <code style="font-family: monospace; font-size: 0.88em; background: var(--surface);
               padding: 1px 6px; border-radius: 3px; color: var(--text);">hardware_interface::SystemInterface</code>,
-              so the rest of the control stack talks to it like any other hardware — making the custom
-              drivers a drop-in replacement with no changes to the controllers above.
-            </p>
+            so the rest of the control stack talks to it like any other hardware — making the custom
+            drivers a drop-in replacement with no changes to the controllers above.
+          </p>
         </div>
 
       </div>
@@ -411,41 +563,47 @@
 
       <div class="arch-card">
         <h3>The 5-Layer Architecture</h3>
-        <p style="margin-bottom:0;">Each layer has a single responsibility and communicates with adjacent layers through well-defined ROS 2 interfaces.</p>
+        <p style="margin-bottom:0;">Each layer has a single responsibility and communicates with adjacent layers through
+          well-defined ROS 2 interfaces.</p>
         <div class="layer-list">
           <div class="layer-row">
             <div class="layer-num">1</div>
             <div class="layer-body">
               <div class="layer-name">Hardware Drivers</div>
-              <div class="layer-desc">Camera and sensor interfaces — hardware-agnostic, swappable per robot platform</div>
+              <div class="layer-desc">Camera and sensor interfaces — hardware-agnostic, swappable per robot platform
+              </div>
             </div>
           </div>
           <div class="layer-row">
             <div class="layer-num">2</div>
             <div class="layer-body">
               <div class="layer-name">Perception Nodes</div>
-              <div class="layer-desc">ROS 2 lifecycle nodes wrapping individual CV models — independently testable and activatable on demand</div>
+              <div class="layer-desc">ROS 2 lifecycle nodes wrapping individual CV models — independently testable and
+                activatable on demand</div>
             </div>
           </div>
           <div class="layer-row">
             <div class="layer-num">3</div>
             <div class="layer-body">
               <div class="layer-name">Action Primitives</div>
-              <div class="layer-desc">Reusable building blocks — "move to waypoint", "activate detector", "read gauge" — shared across all clients</div>
+              <div class="layer-desc">Reusable building blocks — "move to waypoint", "activate detector", "read gauge" —
+                shared across all clients</div>
             </div>
           </div>
           <div class="layer-row">
             <div class="layer-num">4</div>
             <div class="layer-body">
               <div class="layer-name">Behavior Tree Orchestrator</div>
-              <div class="layer-desc">Config-driven task sequencer using ROS 2 lifecycle management; new inspection tasks are defined almost entirely in YAML</div>
+              <div class="layer-desc">Config-driven task sequencer using ROS 2 lifecycle management; new inspection
+                tasks are defined almost entirely in YAML</div>
             </div>
           </div>
           <div class="layer-row">
             <div class="layer-num">5</div>
             <div class="layer-body">
               <div class="layer-name">Data &amp; Reporting</div>
-              <div class="layer-desc">Structured logging of inspection results, images, and metadata for client-facing reports</div>
+              <div class="layer-desc">Structured logging of inspection results, images, and metadata for client-facing
+                reports</div>
             </div>
           </div>
         </div>
@@ -483,8 +641,8 @@
   <section id="note">
     <div class="container">
       <p class="section-label">A Note on Code Access</p>
-      <p style="max-width: 780px;">
-        All code from this role lives in private organisational repositories. So, I can't 
+      <p style="max-width: 1200px;">
+        All code from this role lives in private organisational repositories. So, unfortunately, I can't
         link to it directly.
       </p>
     </div>
@@ -498,4 +656,5 @@
   </footer>
 
 </body>
+
 </html>

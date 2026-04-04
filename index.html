@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Anshul Raje</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
     /* ── TOKENS ── */
     :root {
-      --bg:       #f5f4f0;
-      --surface:  #eceae4;
-      --border:   #d6d3cb;
-      --text:     #1a1916;
-      --muted:    #6b6860;
-      --accent:   #2a52a0;
+      --bg: #f5f4f0;
+      --surface: #eceae4;
+      --border: #d6d3cb;
+      --text: #1a1916;
+      --muted: #6b6860;
+      --accent: #2a52a0;
       --accent-h: #1d3d7a;
-      --tag-bg:   #dde3f0;
-      --tag-fg:   #2a52a0;
-      --radius:   6px;
+      --tag-bg: #dde3f0;
+      --tag-fg: #2a52a0;
+      --radius: 6px;
     }
+
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg:       #141412;
-        --surface:  #1e1d1a;
-        --border:   #2e2d29;
-        --text:     #edeae2;
-        --muted:    #8a877e;
-        --accent:   #6b93e8;
+        --bg: #141412;
+        --surface: #1e1d1a;
+        --border: #2e2d29;
+        --text: #edeae2;
+        --muted: #8a877e;
+        --accent: #6b93e8;
         --accent-h: #8aadf0;
-        --tag-bg:   #1e2a42;
-        --tag-fg:   #6b93e8;
+        --tag-bg: #1e2a42;
+        --tag-fg: #6b93e8;
       }
     }
 
     /* ── RESET ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
@@ -46,9 +60,21 @@
       line-height: 1.7;
       font-size: 16px;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { color: var(--accent-h); text-decoration: underline; }
-    img { display: block; max-width: 100%; }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-h);
+      text-decoration: underline;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
     /* ── LAYOUT ── */
     .container {
@@ -66,22 +92,26 @@
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
     }
+
     nav .container {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .nav-name {
       font-family: 'DM Serif Display', serif;
       font-size: 1.1rem;
       color: var(--text);
       text-decoration: none;
     }
+
     .nav-links {
       display: flex;
       gap: 28px;
       list-style: none;
     }
+
     .nav-links a {
       font-size: 0.875rem;
       font-weight: 400;
@@ -90,13 +120,18 @@
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
 
     /* ── HERO ── */
     .hero {
       padding: 96px 0 72px;
       border-bottom: 1px solid var(--border);
     }
+
     .hero-label {
       font-size: 0.8rem;
       font-weight: 500;
@@ -105,6 +140,7 @@
       color: var(--muted);
       margin-bottom: 20px;
     }
+
     .hero h1 {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(2.4rem, 6vw, 3.8rem);
@@ -112,10 +148,12 @@
       color: var(--text);
       margin-bottom: 24px;
     }
+
     .hero h1 em {
       font-style: italic;
       color: var(--accent);
     }
+
     .hero-bio {
       max-width: 780px;
       color: var(--muted);
@@ -123,11 +161,13 @@
       line-height: 1.75;
       margin-bottom: 36px;
     }
+
     .hero-links {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
     }
+
     .btn {
       display: inline-block;
       padding: 10px 20px;
@@ -137,19 +177,23 @@
       transition: all 0.2s;
       text-decoration: none;
     }
+
     .btn-primary {
       background: var(--accent);
       color: #fff;
     }
+
     .btn-primary:hover {
       background: var(--accent-h);
       color: #fff;
       text-decoration: none;
     }
+
     .btn-ghost {
       border: 1px solid var(--border);
       color: var(--text);
     }
+
     .btn-ghost:hover {
       border-color: var(--accent);
       color: var(--accent);
@@ -161,6 +205,7 @@
       padding: 72px 0;
       border-bottom: 1px solid var(--border);
     }
+
     .section-label {
       font-size: 0.75rem;
       font-weight: 500;
@@ -171,8 +216,14 @@
     }
 
     /* ── EXPERIENCE ── */
-    .exp-list { display: flex; flex-direction: column; gap: 40px; }
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
     .exp-item {}
+
     .exp-header {
       display: flex;
       align-items: baseline;
@@ -181,33 +232,39 @@
       flex-wrap: wrap;
       margin-bottom: 4px;
     }
+
     .exp-org {
       font-family: 'DM Serif Display', serif;
       font-size: 1.15rem;
       color: var(--text);
     }
+
     .exp-date {
       font-size: 0.8rem;
       color: var(--muted);
       white-space: nowrap;
     }
+
     .exp-role {
       font-size: 0.875rem;
       font-weight: 500;
       color: var(--accent);
       margin-bottom: 10px;
     }
+
     .exp-desc {
       font-size: 0.95rem;
       color: var(--muted);
       line-height: 1.7;
     }
+
     .exp-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       margin-top: 12px;
     }
+
     .tag {
       font-size: 0.75rem;
       font-weight: 500;
@@ -223,9 +280,13 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
+
     @media (max-width: 560px) {
-      .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
     }
+
     .project-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -238,12 +299,14 @@
       flex-direction: column;
       gap: 10px;
     }
+
     .project-card:hover {
       border-color: var(--accent);
       transform: translateY(-2px);
       text-decoration: none;
       color: var(--text);
     }
+
     .project-card-label {
       font-size: 0.7rem;
       font-weight: 500;
@@ -251,38 +314,58 @@
       text-transform: uppercase;
       color: var(--muted);
     }
+
     .project-card h3 {
       font-family: 'DM Serif Display', serif;
       font-size: 1.2rem;
       line-height: 1.25;
     }
+
     .project-card p {
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.65;
       flex: 1;
     }
+
     .project-card-footer {
       font-size: 0.8rem;
       color: var(--accent);
       font-weight: 500;
       margin-top: 4px;
     }
+
     .project-card.minor {
       grid-column: span 2;
       flex-direction: row;
       align-items: center;
       gap: 24px;
     }
-    .project-card.minor .minor-text { flex: 1; }
-    .project-card.minor p { margin-top: 6px; }
+
+    .project-card.minor .minor-text {
+      flex: 1;
+    }
+
+    .project-card.minor p {
+      margin-top: 6px;
+    }
+
     @media (max-width: 560px) {
-      .project-card.minor { grid-column: span 1; flex-direction: column; }
+      .project-card.minor {
+        grid-column: span 1;
+        flex-direction: column;
+      }
     }
 
     /* ── EDUCATION ── */
-    .edu-list { display: flex; flex-direction: column; gap: 28px; }
+    .edu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
     .edu-item {}
+
     .edu-header {
       display: flex;
       align-items: baseline;
@@ -291,12 +374,21 @@
       gap: 8px;
       margin-bottom: 2px;
     }
+
     .edu-school {
       font-family: 'DM Serif Display', serif;
       font-size: 1.1rem;
     }
-    .edu-date { font-size: 0.8rem; color: var(--muted); }
-    .edu-degree { font-size: 0.9rem; color: var(--muted); }
+
+    .edu-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .edu-degree {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
 
     /* ── CONTACT ── */
     .contact-row {
@@ -315,18 +407,39 @@
 
     /* ── FADE IN ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .hero > * {
+
+    .hero>* {
       animation: fadeUp 0.5s ease both;
     }
-    .hero .hero-label  { animation-delay: 0.05s; }
-    .hero h1           { animation-delay: 0.12s; }
-    .hero .hero-bio    { animation-delay: 0.2s; }
-    .hero .hero-links  { animation-delay: 0.28s; }
+
+    .hero .hero-label {
+      animation-delay: 0.05s;
+    }
+
+    .hero h1 {
+      animation-delay: 0.12s;
+    }
+
+    .hero .hero-bio {
+      animation-delay: 0.2s;
+    }
+
+    .hero .hero-links {
+      animation-delay: 0.28s;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -532,4 +645,5 @@
   </footer>
 
 </body>
+
 </html>
