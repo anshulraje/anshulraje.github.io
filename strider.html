@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strider Robotics · Anshul Raje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #f5f4f0;
+      --surface:  #eceae4;
+      --border:   #d6d3cb;
+      --text:     #1a1916;
+      --muted:    #6b6860;
+      --accent:   #2a52a0;
+      --accent-h: #1d3d7a;
+      --tag-bg:   #dde3f0;
+      --tag-fg:   #2a52a0;
+      --radius:   6px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:       #141412;
+        --surface:  #1e1d1a;
+        --border:   #2e2d29;
+        --text:     #edeae2;
+        --muted:    #8a877e;
+        --accent:   #6b93e8;
+        --accent-h: #8aadf0;
+        --tag-bg:   #1e2a42;
+        --tag-fg:   #6b93e8;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-h); text-decoration: underline; }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: var(--text); text-decoration: none;
+    }
+    .nav-back {
+      font-size: 0.875rem; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15; margin-bottom: 20px;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 0.875rem; color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .hero-desc {
+      max-width: 780px; color: var(--muted);
+      font-size: 1rem; line-height: 1.75;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .tag {
+      font-size: 0.75rem; font-weight: 500;
+      padding: 3px 10px; border-radius: 100px;
+      background: var(--tag-bg); color: var(--tag-fg);
+    }
+
+    /* SECTIONS */
+    section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 32px;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem; margin-bottom: 16px;
+    }
+    h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem; margin-bottom: 8px; color: var(--text);
+    }
+    p { color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* PHASE TIMELINE */
+    .phase-list { display: flex; flex-direction: column; gap: 0; }
+    .phase-item {
+      display: flex;
+      gap: 24px;
+      position: relative;
+    }
+    .phase-item + .phase-item { margin-top: 32px; }
+    .phase-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 40px;
+    }
+    .phase-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .phase-line {
+      width: 1px;
+      background: var(--border);
+      flex: 1;
+      margin-top: 6px;
+    }
+    .phase-item:last-child .phase-line { display: none; }
+    .phase-right { flex: 1; padding-bottom: 32px; }
+    .phase-item:last-child .phase-right { padding-bottom: 0; }
+    .phase-period {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 6px;
+    }
+
+    /* TECH GRID */
+    .tech-list { display: flex; flex-direction: column; gap: 32px; }
+    .tech-item {}
+
+    /* ARCH CARD */
+    .arch-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 24px;
+    }
+    .arch-card h3 { margin-bottom: 16px; }
+
+    .layer-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    .layer-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+    }
+    .layer-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      min-width: 24px;
+    }
+    .layer-body {}
+    .layer-name {
+      font-weight: 500; font-size: 0.9rem;
+      color: var(--text); margin-bottom: 2px;
+    }
+    .layer-desc { font-size: 0.82rem; color: var(--muted); }
+
+    /* STAT ROW */
+    .stat-row {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      margin-top: 24px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      flex: 1;
+      min-width: 140px;
+    }
+    .stat-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 0; text-align: center;
+      font-size: 0.8rem; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="nav-name">Anshul Raje</a>
+      <a href="index.html" class="nav-back">← Back</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
+      <p class="hero-label">Full-Time · Strider Robotics</p>
+      <h1>Quadruped Autonomy<br>&amp; Perception</h1>
+      <div class="hero-meta">
+        <span>📅 Aug 2024 — Apr 2026</span>
+        <span>📍 Bangalore, India</span>
+        <span>👤 Associate Robotics Engineer</span>
+      </div>
+      <p class="hero-desc">
+        Two years at Strider Robotics building software for legged robots that operate in the real world.
+        I started on the systems side — locomotion control, state estimation, and hardware integration
+        for a quadruped robot — then moved to the autonomy team, where I designed and built a full
+        perception framework for autonomous industrial inspection, deployed on real robots for Fortune 500 clients.
+      </p>
+      <div class="tags">
+        <span class="tag">ROS 2</span>
+        <span class="tag">C++</span>
+        <span class="tag">Python</span>
+        <span class="tag">MPC</span>
+        <span class="tag">Kalman Filter</span>
+        <span class="tag">YOLO</span>
+        <span class="tag">Behavior Trees</span>
+        <span class="tag">Lifecycle Nodes</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <section id="overview">
+    <div class="container">
+      <p class="section-label">Two Phases</p>
+      <div class="phase-list">
+
+        <div class="phase-item">
+            <div class="phase-left">
+              <div class="phase-dot"></div>
+              <div class="phase-line"></div>
+            </div>
+            <div class="phase-right">
+              <p class="phase-period">Aug 2024 — Dec 2025 · Systems &amp; Controls</p>
+              <h3>Making the Robot Walk Reliably</h3>
+              <p>
+                The first year and a half was about the fundamentals of legged locomotion —
+                getting the robot to move reliably and know where it is at all times.
+                This meant working deep in the control stack: integrating MPC-based control
+                with foothold optimisation for stable traversal on uneven terrain, implementing
+                fall recovery strategies for autonomous self-righting, and building a state estimator
+                that worked without GPS.
+              </p>
+              <p>
+                On the hardware side, I engineered a custom CAN transport layer for Strider's
+                in-house motor drivers: integrated as a ROS 2 Control hardware interface across
+                12 actuators, with a 300% throughput improvement over the previous implementation.
+              </p>
+              <p>
+                I also built automated actuator characterisation pipelines to identify actuator
+                dynamics, which directly reduced the sim-to-real gap and sped up reinforcement
+                learning experiments.
+              </p>
+            </div>
+        </div>
+
+        <div class="phase-item">
+          <div class="phase-left">
+            <div class="phase-dot"></div>
+            <div class="phase-line"></div>
+          </div>
+          <div class="phase-right">
+            <p class="phase-period">Jan 2026 — Apr 2026 · Autonomy &amp; Perception</p>
+            <h3>Teaching the Robot to See and Decide</h3>
+            <p>
+              In early 2026 I moved to the autonomy team. The goal was to take the robot — which
+              could already walk — and turn it into an autonomous industrial inspector capable of
+              reading gauges, detecting hazards, and executing multi-step tasks without human intervention.
+              I designed and built the full perception and orchestration framework from scratch.
+            </p>
+            <p>
+              This got deployed on real robots for client field operations — the first time I had
+              software I wrote running unsupervised in an actual industrial facility.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMS -->
+  <section id="systems">
+    <div class="container">
+      <p class="section-label">Phase 1 · Systems &amp; Controls</p>
+      <div class="tech-list">
+
+        <div class="tech-item">
+          <h3>Locomotion — MPC with Foothold Optimisation</h3>
+          <p>
+            Enhanced the robot's locomotion reliability by integrating Model Predictive Control
+            with foothold optimisation. The controller selects optimal foothold positions in real time
+            to maintain balance on uneven terrain — a common challenge in industrial environments.
+            Also developed fall recovery strategies that allow the robot to autonomously right itself
+            after a tip-over, without requiring human intervention.
+          </p>
+        </div>
+
+        <div class="tech-item">
+          <h3>State Estimation — Kalman Filter Sensor Fusion</h3>
+          <p>
+            Designed a Kalman filter–based state estimator fusing data from an IMU, joint encoders,
+            and foot contact estimators. The goal was reliable localisation in GPS-denied indoor environments
+            where the robot would be deployed. The estimator feeds position, velocity, and orientation
+            estimates to the locomotion controller and the perception stack.
+          </p>
+        </div>
+
+        <div class="tech-item">
+          <h3>Actuator Characterisation</h3>
+          <p>
+            Built automated testing pipelines to measure and model actuator dynamics — identifying
+            friction, backlash, and delay characteristics for each joint. The resulting models
+            were used to reduce discrepancies between simulation and real-world behaviour,
+            which meaningfully sped up the reinforcement learning iteration loop.
+          </p>
+        </div>
+
+        <div class="tech-item">
+            <h3>Hardware Integration — CAN Transport Layer</h3>
+            <p>
+              Engineered a custom CAN transport layer for Strider's in-house motor drivers, integrated
+              as a ROS 2 Control hardware interface. The implementation handles real-time communication
+              across 12 actuators simultaneously — achieving a 300% improvement in throughput over the
+              previous implementation, with under 1 PPM data loss under sustained load.
+            </p>
+            <p>
+              The transport layer abstracts the CAN bus behind the standard ROS 2 Control
+              <code style="font-family: monospace; font-size: 0.88em; background: var(--surface);
+              padding: 1px 6px; border-radius: 3px; color: var(--text);">hardware_interface::SystemInterface</code>,
+              so the rest of the control stack talks to it like any other hardware — making the custom
+              drivers a drop-in replacement with no changes to the controllers above.
+            </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PERCEPTION -->
+  <section id="perception">
+    <div class="container">
+      <p class="section-label">Phase 2 · Autonomy &amp; Perception</p>
+
+      <h2>Perception Orchestration Framework</h2>
+      <p>
+        The core deliverable of my time on the autonomy team was a 5-layer modular ROS 2 architecture
+        for running vision and perception tasks on industrial inspection robots. The design philosophy:
+        hardware, application logic, and task orchestration should be completely independent layers,
+        so that new inspection tasks can be added quickly without touching the underlying framework.
+      </p>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Architecture layers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">~200</div>
+          <div class="stat-label">Lines of code per new task</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">80%</div>
+          <div class="stat-label">Configuration in YAML</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">Fortune<br>500</div>
+          <div class="stat-label">Deployed for real clients</div>
+        </div>
+      </div>
+
+      <div class="arch-card">
+        <h3>The 5-Layer Architecture</h3>
+        <p style="margin-bottom:0;">Each layer has a single responsibility and communicates with adjacent layers through well-defined ROS 2 interfaces.</p>
+        <div class="layer-list">
+          <div class="layer-row">
+            <div class="layer-num">1</div>
+            <div class="layer-body">
+              <div class="layer-name">Hardware Drivers</div>
+              <div class="layer-desc">Camera and sensor interfaces — hardware-agnostic, swappable per robot platform</div>
+            </div>
+          </div>
+          <div class="layer-row">
+            <div class="layer-num">2</div>
+            <div class="layer-body">
+              <div class="layer-name">Perception Nodes</div>
+              <div class="layer-desc">ROS 2 lifecycle nodes wrapping individual CV models — independently testable and activatable on demand</div>
+            </div>
+          </div>
+          <div class="layer-row">
+            <div class="layer-num">3</div>
+            <div class="layer-body">
+              <div class="layer-name">Action Primitives</div>
+              <div class="layer-desc">Reusable building blocks — "move to waypoint", "activate detector", "read gauge" — shared across all clients</div>
+            </div>
+          </div>
+          <div class="layer-row">
+            <div class="layer-num">4</div>
+            <div class="layer-body">
+              <div class="layer-name">Behavior Tree Orchestrator</div>
+              <div class="layer-desc">Config-driven task sequencer using ROS 2 lifecycle management; new inspection tasks are defined almost entirely in YAML</div>
+            </div>
+          </div>
+          <div class="layer-row">
+            <div class="layer-num">5</div>
+            <div class="layer-body">
+              <div class="layer-name">Data &amp; Reporting</div>
+              <div class="layer-desc">Structured logging of inspection results, images, and metadata for client-facing reports</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tech-list" style="margin-top: 48px;">
+
+        <div class="tech-item">
+          <h3>Computer Vision Pipelines</h3>
+          <p>
+            Built two main perception capabilities as lifecycle nodes: analog gauge reading and
+            fire extinguisher detection. Both use YOLO models trained on custom datasets via
+            Ultralytics. Because each CV node is a standalone lifecycle node, it can be activated,
+            deactivated, and tested completely independently of the rest of the stack — which made
+            iteration significantly faster.
+          </p>
+        </div>
+
+        <div class="tech-item">
+          <h3>Config-Driven Task Execution</h3>
+          <p>
+            The orchestrator is built on a behavior tree–based architecture with ROS 2 lifecycle
+            management. A new inspection task — for a new client site or a new type of equipment —
+            can be implemented in around 200 lines of code, with 80% of that being YAML configuration.
+            The core framework stays untouched. This made it practical to deploy across multiple
+            clients without a separate software effort for each.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTNOTE -->
+  <section id="note">
+    <div class="container">
+      <p class="section-label">A Note on Code Access</p>
+      <p style="max-width: 780px;">
+        All code from this role lives in private organisational repositories. So, I can't 
+        link to it directly.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p><a href="index.html">← Back to Anshul Raje</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
