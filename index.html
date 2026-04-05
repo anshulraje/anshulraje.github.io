@@ -78,7 +78,7 @@
 
     /* ── LAYOUT ── */
     .container {
-      max-width: 780px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -127,6 +127,43 @@
     }
 
     /* ── HERO ── */
+    .hero-container {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-image {
+      flex: 1;
+      max-width: 380px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-image {
+        max-width: 100%;
+        margin-top: 24px;
+      }
+    }
+
     .hero {
       padding: 96px 0 72px;
       border-bottom: 1px solid var(--border);
@@ -207,12 +244,13 @@
     }
 
     .section-label {
-      font-size: 0.75rem;
+      font-size: 1.25rem;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 40px;
+      text-align: center;
     }
 
     /* ── EXPERIENCE ── */
@@ -277,8 +315,14 @@
     /* ── PROJECTS ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 560px) {
@@ -395,6 +439,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      justify-content: center;
     }
 
     /* ── FOOTER ── */
@@ -418,24 +463,49 @@
       }
     }
 
-    .hero>* {
+    .hero-content>*,
+    .hero-image,
+    #experience,
+    #projects,
+    #education,
+    #contact {
       animation: fadeUp 0.5s ease both;
     }
 
-    .hero .hero-label {
+    .hero-content .hero-label {
       animation-delay: 0.05s;
     }
 
-    .hero h1 {
-      animation-delay: 0.12s;
+    .hero-content h1 {
+      animation-delay: 0.10s;
     }
 
-    .hero .hero-bio {
-      animation-delay: 0.2s;
+    .hero-content .hero-bio {
+      animation-delay: 0.15s;
     }
 
-    .hero .hero-links {
-      animation-delay: 0.28s;
+    .hero-content .hero-links {
+      animation-delay: 0.20s;
+    }
+
+    .hero-image {
+      animation-delay: 0.25s;
+    }
+
+    #experience {
+      animation-delay: 0.30s;
+    }
+
+    #projects {
+      animation-delay: 0.35s;
+    }
+
+    #education {
+      animation-delay: 0.40s;
+    }
+
+    #contact {
+      animation-delay: 0.45s;
     }
   </style>
 </head>
@@ -457,20 +527,25 @@
 
   <!-- HERO -->
   <div class="hero">
-    <div class="container">
-      <p class="hero-label">Robotics Engineer</p>
-      <h1>Building robots that<br><em>move and see.</em></h1>
-      <p class="hero-bio">
-        I'm a robotics engineer starting my MS in Robotics Engineering at WPI in Fall 2026.
-        My work spans locomotion control, state estimation, and perception systems —
-        mostly on quadruped robots and autonomous vehicles, mostly in ROS 2.
-        I'm a U.S. citizen based in Bangalore, heading to Worcester, MA.
-      </p>
-      <div class="hero-links">
-        <a href="#contact" class="btn btn-primary">Get in touch</a>
-        <a href="https://linkedin.com/in/anshulraje" target="_blank" class="btn btn-ghost">LinkedIn</a>
-        <a href="https://github.com/anshulraje" target="_blank" class="btn btn-ghost">GitHub</a>
-        <a href="assets/resumes/Resume_April_2026.pdf" target="_blank" class="btn btn-ghost">Résumé</a>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <p class="hero-label">Robotics Engineer</p>
+        <h1>Building robots that<br><em>move and see.</em></h1>
+        <p class="hero-bio">
+          I'm a robotics engineer starting my MS in Robotics Engineering at WPI in Fall 2026.
+          My work spans locomotion control, state estimation, and perception systems —
+          mostly on quadruped robots and autonomous vehicles, mostly in ROS 2.
+          I'm a U.S. citizen based in Bangalore, heading to Worcester, MA.
+        </p>
+        <div class="hero-links">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="https://linkedin.com/in/anshulraje" target="_blank" class="btn btn-ghost">LinkedIn</a>
+          <a href="https://github.com/anshulraje" target="_blank" class="btn btn-ghost">GitHub</a>
+          <a href="assets/resumes/Resume_April_2026.pdf" target="_blank" class="btn btn-ghost">Résumé</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/index/profile-picture.jpg" alt="Anshul Raje" />
       </div>
     </div>
   </div>
@@ -555,7 +630,7 @@
       <div class="projects-grid">
 
         <a href="kratos.html" class="project-card">
-          <span class="project-card-label">2021 — 2023</span>
+          <span class="project-card-label">2021 — 2023 · BITS Goa</span>
           <h3>Project Kratos</h3>
           <p>
             Controls Lead for BITS Goa's Mars Rover team. Autonomous navigation,
@@ -595,6 +670,26 @@
           <span class="project-card-footer">View on GitHub →</span>
         </a>
 
+        <a href="https://github.com/anshulraje/follow-the-gap" target="_blank" class="project-card">
+          <span class="project-card-label">Open Source</span>
+          <h3>Follow The Gap</h3>
+          <p>
+            Implementation of the Follow The Gap algorithm for reactive obstacle
+            avoidance on an F1/10 racing car.
+          </p>
+          <span class="project-card-footer">View on GitHub →</span>
+        </a>
+
+        <a href="https://github.com/anshulraje/srtp_urdf_resources" target="_blank" class="project-card">
+          <span class="project-card-label">Open Source</span>
+          <h3>Space Robotics Training Program</h3>
+          <p>
+            Resources and tutorials for Module 10 & 11 of Spaceonova's Space Robotics Training Program,
+            covering ROS, URDF, and robot modeling.
+          </p>
+          <span class="project-card-footer">View on GitHub →</span>
+        </a>
+
       </div>
     </div>
   </section>
@@ -626,7 +721,7 @@
   <section id="contact">
     <div class="container">
       <p class="section-label">Contact</p>
-      <p style="color:var(--muted); margin-bottom: 24px; max-width: 780px;">
+      <p style="color:var(--muted); margin-bottom: 24px; max-width: 1200px; text-align: center;">
         I'm always happy to chat about robotics, research, or potential opportunities.
       </p>
       <div class="contact-row">
