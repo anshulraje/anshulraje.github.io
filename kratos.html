@@ -5,512 +5,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Kratos · Anshul Raje</title>
+  <meta name="description" content="Project Kratos — BITS Goa's student Mars Rover team. Controls Lead: path following, obstacle detection, and a 5-DOF robotic arm." />
+  <script>
+    (function () {
+      var t;
+      var m = location.search.match(/[?&]theme=(light|dark)/);
+      if (m) t = m[1];
+      if (!t) { try { t = localStorage.getItem('theme'); } catch (e) { } }
+      if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #f5f4f0;
-      --surface: #eceae4;
-      --border: #d6d3cb;
-      --text: #1a1916;
-      --muted: #6b6860;
-      --accent: #2a52a0;
-      --accent-h: #1d3d7a;
-      --tag-bg: #dde3f0;
-      --tag-fg: #2a52a0;
-      --radius: 6px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #141412;
-        --surface: #1e1d1a;
-        --border: #2e2d29;
-        --text: #edeae2;
-        --muted: #8a877e;
-        --accent: #6b93e8;
-        --accent-h: #8aadf0;
-        --tag-bg: #1e2a42;
-        --tag-fg: #6b93e8;
-      }
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: var(--accent-h);
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* NAV */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 0;
-    }
-
-    nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-name {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.1rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-back {
-      font-size: 0.875rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-back:hover {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    /* HERO */
-    .hero-container {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .hero-image {
-      flex: 1;
-      max-width: 450px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .hero-container {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-image {
-        max-width: 100%;
-        margin-top: 24px;
-      }
-    }
-
-    .hero {
-      padding: 72px 0 56px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    .hero-meta span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-desc {
-      max-width: 780px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 20px;
-    }
-
-    .tag {
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 100px;
-      background: var(--tag-bg);
-      color: var(--tag-fg);
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 56px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section-label {
-      font-size: 1.25rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 16px;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-
-    p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* COMPETITIONS */
-    .comp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .comp-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px 28px;
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .comp-rank {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
-      line-height: 1;
-      color: var(--accent);
-      min-width: 48px;
-      text-align: center;
-    }
-
-    .comp-body {}
-
-    .comp-name {
-      font-weight: 500;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .comp-detail {
-      font-size: 0.875rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    /* TECH */
-    .tech-list {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .tech-item {}
-
-    .tech-item h3 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-
-    /* VIDEOS */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .video-grid.grid-2 {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    @media (max-width: 600px) {
-      .video-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .video-grid.grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .video-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .video-card {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .video-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .video-thumb {
-      position: relative;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-      background: var(--surface);
-    }
-
-    .video-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .video-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.25);
-      transition: background 0.2s;
-    }
-
-    .video-card:hover .video-play {
-      background: rgba(0, 0, 0, 0.4);
-    }
-
-    .video-play-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.92);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      padding-left: 2px;
-      color: #111;
-    }
-
-    .video-info {
-      padding: 10px 12px;
-      background: var(--surface);
-      flex: 1;
-    }
-
-    .video-info-title {
-      font-size: 0.82rem;
-      font-weight: 500;
-      line-height: 1.4;
-      color: var(--text);
-    }
-
-    .video-info-sub {
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    /* MEDIA COLLAGE */
-    .media-collage {
-      columns: 2 320px;
-      column-gap: 16px;
-    }
-
-    .media-collage>* {
-      break-inside: avoid;
-      margin-bottom: 16px;
-    }
-
-    .media-photo {
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .media-photo:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    /* SOFT SKILLS */
-    .skill-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .skill-item {
-      display: flex;
-      gap: 16px;
-    }
-
-    .skill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 10px;
-      flex-shrink: 0;
-    }
-
-    .skill-item p {
-      margin: 0;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 32px 0;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ── FADE IN ── */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .hero-content {
-      animation: fadeUp 0.6s ease both;
-      animation-delay: 0.1s;
-    }
-
-    .hero-image {
-      animation: fadeUp 0.6s ease both;
-      animation-delay: 0.2s;
-    }
-
-    section {
-      animation: fadeUp 0.6s ease both;
-      animation-delay: 0.3s;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
   <!-- NAV -->
-  <nav>
+  <nav class="site-nav">
     <div class="container">
-      <a href="index.html" class="nav-name">Anshul Raje</a>
-      <a href="index.html#projects" class="nav-back">← Back to Projects</a>
+      <a href="index.html" class="nav-brand"><span class="brand-mark">▲</span> Anshul Raje</a>
+      <div class="nav-right">
+        <a href="index.html#projects" class="nav-back">← back to projects</a>
+        <button class="theme-toggle" aria-label="Toggle light / dark theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="container hero-container">
-      <div class="hero-content">
-        <p class="hero-label">Student Project · BITS Pilani Goa</p>
-        <h1>Project Kratos</h1>
+  <header class="hero">
+    <div class="container hero-layout">
+      <div class="hero-text">
+        <p class="eyebrow">Student Project · BITS Pilani Goa</p>
+        <h1>Project <span class="accent-word">Kratos</span></h1>
         <div class="hero-meta">
-          <span>📅 Sept 2021 — May 2023</span>
-          <span>📍 Goa, India</span>
-          <span>👤 Controls Lead</span>
-          <span>🧑‍🏫 Advisor: Dr. Toby Joseph</span>
+          <span><span class="meta-key">when:</span> Sept 2021 — May 2023</span>
+          <span><span class="meta-key">where:</span> Goa, India</span>
+          <span><span class="meta-key">role:</span> Controls Lead</span>
+          <span><span class="meta-key">advisor:</span> Dr. Toby Joseph</span>
         </div>
         <p class="hero-desc">
           Project Kratos is a fully student-driven Mars Rover team at BITS Pilani Goa.
@@ -518,7 +65,7 @@
           and onboard life detection — built to compete in international rover challenges
           against university teams from around the world. I led the Controls subsystem,
           responsible for everything from path planning and motor control to the
-          software-hardware interface of the rover.
+          software–hardware interface of the rover.
         </p>
         <div class="tags">
           <span class="tag">ROS</span>
@@ -531,42 +78,40 @@
           <span class="tag">OpenCV</span>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="assets/kratos/full-rover.jpg" alt="Kratos Rover" />
+      <div class="hero-photo">
+        <img src="assets/kratos/full-rover.jpg" alt="The Kratos Mars Rover" />
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- COMPETITIONS -->
   <section id="competitions">
     <div class="container">
-      <p class="section-label">Competition Results</p>
+      <div class="section-head reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Competition Results</h2>
+        <span class="section-rule"></span>
+      </div>
       <div class="comp-list">
 
-        <div class="comp-item">
-          <div class="comp-rank">🥈</div>
-          <div class="comp-body">
-            <p class="comp-name">Anatolian Rover Challenge 2022 · Istanbul, Turkey</p>
-            <p class="comp-detail">2nd place globally. Won Best Autonomous &amp; Controls vertical and Best Science
-              vertical.</p>
-          </div>
+        <div class="comp-item reveal">
+          <div class="comp-rank">🥈 2nd</div>
+          <p class="comp-name">Anatolian Rover Challenge 2022 · Istanbul, Turkey</p>
+          <p class="comp-detail">2nd place globally. Won the Best Autonomous &amp; Controls vertical and the Best
+            Science vertical.</p>
         </div>
 
-        <div class="comp-item">
-          <div class="comp-rank">🏅</div>
-          <div class="comp-body">
-            <p class="comp-name">International Rover Challenge 2023 · Bangalore, India</p>
-            <p class="comp-detail">Excellence Award for Overall Performance. 4th place overall.</p>
-          </div>
+        <div class="comp-item reveal">
+          <div class="comp-rank">🏅 4th</div>
+          <p class="comp-name">International Rover Challenge 2023 · Bangalore, India</p>
+          <p class="comp-detail">Excellence Award for Overall Performance. 4th place overall.</p>
         </div>
 
-        <div class="comp-item">
+        <div class="comp-item reveal">
           <div class="comp-rank">#19</div>
-          <div class="comp-body">
-            <p class="comp-name">University Rover Challenge 2022 · Utah, USA</p>
-            <p class="comp-detail">19th place globally in our first international competition — a strong debut for a
-              relatively new team.</p>
-          </div>
+          <p class="comp-name">University Rover Challenge 2022 · Utah, USA</p>
+          <p class="comp-detail">19th place globally in our first international competition — a strong debut for a
+            relatively new team.</p>
         </div>
 
       </div>
@@ -574,12 +119,16 @@
   </section>
 
   <!-- TECHNICAL -->
-  <section id="technical">
+  <section id="technical" class="alt">
     <div class="container">
-      <p class="section-label">Technical Work</p>
+      <div class="section-head reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Technical Work</h2>
+        <span class="section-rule"></span>
+      </div>
       <div class="tech-list">
 
-        <div class="tech-item">
+        <div class="tech-item reveal">
           <h3>Path Following — Stanley Controller</h3>
           <p>
             Implemented the Stanley Controller for smooth, continuous path following —
@@ -590,12 +139,12 @@
           </p>
           <p>
             The implementation is open source:
-            <a href="https://github.com/anshulraje/Stanley-Controller"
-              target="_blank">github.com/anshulraje/Stanley-Controller</a>
+            <a href="https://github.com/anshulraje/Stanley-Controller" target="_blank"
+              rel="noopener">github.com/anshulraje/Stanley-Controller</a>
           </p>
         </div>
 
-        <div class="tech-item">
+        <div class="tech-item reveal">
           <h3>Obstacle Detection — YOLOv3</h3>
           <p>
             Integrated a YOLOv3 model trained on a custom dataset for real-time obstacle
@@ -604,7 +153,7 @@
           </p>
         </div>
 
-        <div class="tech-item">
+        <div class="tech-item reveal">
           <h3>Robotic Arm — Forward &amp; Inverse Kinematics</h3>
           <p>
             Developed Forward and Inverse Kinematics algorithms from scratch to control
@@ -614,7 +163,7 @@
           </p>
         </div>
 
-        <div class="tech-item">
+        <div class="tech-item reveal">
           <h3>Path Planning — A* with PID</h3>
           <p>
             Implemented A* path planning with a PID controller for structured environment
@@ -630,12 +179,16 @@
   <!-- COMPETITION VIDEOS -->
   <section id="competition_videos">
     <div class="container">
-      <p class="section-label">Check out our rover!</p>
-      <div class="video-grid grid-2">
+      <div class="section-head reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Check Out Our Rover</h2>
+        <span class="section-rule"></span>
+      </div>
+      <div class="video-grid">
 
-        <a href="https://youtu.be/Ok03ddqfSL4" target="_blank" class="video-card">
+        <a href="https://youtu.be/Ok03ddqfSL4" target="_blank" rel="noopener" class="video-card reveal">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/Ok03ddqfSL4/hqdefault.jpg" alt="URC 2022 Qualification"
+            <img src="https://img.youtube.com/vi/Ok03ddqfSL4/hqdefault.jpg" alt="URC 2022 Qualification video"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -647,9 +200,9 @@
           </div>
         </a>
 
-        <a href="https://youtu.be/O5x6_6F597g" target="_blank" class="video-card">
+        <a href="https://youtu.be/O5x6_6F597g" target="_blank" rel="noopener" class="video-card reveal">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/O5x6_6F597g/hqdefault.jpg" alt="ARC 2022 Qualification"
+            <img src="https://img.youtube.com/vi/O5x6_6F597g/hqdefault.jpg" alt="ARC 2022 Qualification video"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -666,15 +219,21 @@
   </section>
 
   <!-- MEDIA COLLAGE -->
-  <section id="gallery">
+  <section id="gallery" class="alt">
     <div class="container">
-      <p class="section-label">Media &amp; Gallery</p>
+      <div class="section-head reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Media &amp; Gallery</h2>
+        <span class="section-rule"></span>
+      </div>
       <div class="media-collage">
 
-        <img src="assets/kratos/arc-medals.jpg" class="media-photo" loading="lazy">
-        <img src="assets/kratos/arc-team-rover.jpg" class="media-photo" loading="lazy">
+        <img src="assets/kratos/arc-medals.jpg" class="media-photo" alt="Medals from the Anatolian Rover Challenge"
+          loading="lazy">
+        <img src="assets/kratos/arc-team-rover.jpg" class="media-photo" alt="Team with the rover at ARC"
+          loading="lazy">
 
-        <a href="https://youtu.be/E4YUV91gCJI" target="_blank" class="video-card">
+        <a href="https://youtu.be/E4YUV91gCJI" target="_blank" rel="noopener" class="video-card">
           <div class="video-thumb">
             <img src="https://img.youtube.com/vi/E4YUV91gCJI/hqdefault.jpg" alt="Stanley Controller in Gazebo"
               loading="lazy" />
@@ -688,12 +247,12 @@
           </div>
         </a>
 
-        <img src="assets/kratos/urc-garage.jpg" class="media-photo" loading="lazy">
-        <img src="assets/kratos/arm-panel.jpg" class="media-photo" loading="lazy">
+        <img src="assets/kratos/urc-garage.jpg" class="media-photo" alt="Rover in the garage at URC" loading="lazy">
+        <img src="assets/kratos/arm-panel.jpg" class="media-photo" alt="Robotic arm operating a panel" loading="lazy">
 
-        <a href="https://youtu.be/Bm-_w2vKLq8" target="_blank" class="video-card">
+        <a href="https://youtu.be/Bm-_w2vKLq8" target="_blank" rel="noopener" class="video-card">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/Bm-_w2vKLq8/hqdefault.jpg" alt="Autonomous Navigation"
+            <img src="https://img.youtube.com/vi/Bm-_w2vKLq8/hqdefault.jpg" alt="Autonomous navigation"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -705,11 +264,12 @@
           </div>
         </a>
 
-        <img src="assets/kratos/arc-rover-back.jpg" class="media-photo" loading="lazy">
+        <img src="assets/kratos/arc-rover-back.jpg" class="media-photo" alt="Back view of the rover at ARC"
+          loading="lazy">
 
-        <a href="https://youtu.be/4-ztEm7eU28" target="_blank" class="video-card">
+        <a href="https://youtu.be/4-ztEm7eU28" target="_blank" rel="noopener" class="video-card">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/4-ztEm7eU28/hqdefault.jpg" alt="Robotic Manipulator Turning a Lever"
+            <img src="https://img.youtube.com/vi/4-ztEm7eU28/hqdefault.jpg" alt="Robotic manipulator turning a lever"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -721,12 +281,14 @@
           </div>
         </a>
 
-        <img src="assets/kratos/qstp-certificate.png" class="media-photo" loading="lazy">
-        <img src="assets/kratos/arc-autonomous-moon.jpg" class="media-photo" loading="lazy">
+        <img src="assets/kratos/qstp-certificate.png" class="media-photo" alt="QSTP mentorship certificate"
+          loading="lazy">
+        <img src="assets/kratos/arc-autonomous-moon.jpg" class="media-photo" alt="Rover on the autonomous course at ARC"
+          loading="lazy">
 
-        <a href="https://youtu.be/IqX9jwTAZ0Y" target="_blank" class="video-card">
+        <a href="https://youtu.be/IqX9jwTAZ0Y" target="_blank" rel="noopener" class="video-card">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/IqX9jwTAZ0Y/hqdefault.jpg" alt="Collecting Soil Samples"
+            <img src="https://img.youtube.com/vi/IqX9jwTAZ0Y/hqdefault.jpg" alt="Collecting soil samples"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -738,12 +300,13 @@
           </div>
         </a>
 
-        <img src="assets/kratos/arc-rover-medals.jpeg" class="media-photo" loading="lazy">
-        <img src="assets/kratos/urc-team.jpg" class="media-photo" loading="lazy">
+        <img src="assets/kratos/arc-rover-medals.jpeg" class="media-photo" alt="Rover with competition medals"
+          loading="lazy">
+        <img src="assets/kratos/urc-team.jpg" class="media-photo" alt="Team photo at URC" loading="lazy">
 
-        <a href="https://youtu.be/H6aSaC4tBCE" target="_blank" class="video-card">
+        <a href="https://youtu.be/H6aSaC4tBCE" target="_blank" rel="noopener" class="video-card">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/H6aSaC4tBCE/hqdefault.jpg" alt="Rover Carrying a Medkit"
+            <img src="https://img.youtube.com/vi/H6aSaC4tBCE/hqdefault.jpg" alt="Rover carrying a medkit"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -755,11 +318,12 @@
           </div>
         </a>
 
-        <img src="assets/kratos/arc-rover-trolley.jpg" class="media-photo" loading="lazy">
+        <img src="assets/kratos/arc-rover-trolley.jpg" class="media-photo" alt="Rover on a transport trolley"
+          loading="lazy">
 
-        <a href="https://youtu.be/1hS4L-7Gfmc" target="_blank" class="video-card">
+        <a href="https://youtu.be/1hS4L-7Gfmc" target="_blank" rel="noopener" class="video-card">
           <div class="video-thumb">
-            <img src="https://img.youtube.com/vi/1hS4L-7Gfmc/hqdefault.jpg" alt="A* Path Planning with PID"
+            <img src="https://img.youtube.com/vi/1hS4L-7Gfmc/hqdefault.jpg" alt="A* path planning with PID"
               loading="lazy" />
             <div class="video-play">
               <div class="video-play-btn">▶</div>
@@ -771,41 +335,46 @@
           </div>
         </a>
 
-        <img src="assets/kratos/arc-certificate.png" class="media-photo" loading="lazy">
-        <img src="assets/kratos/urc-certificate.png" class="media-photo" loading="lazy">
+        <img src="assets/kratos/arc-certificate.png" class="media-photo" alt="ARC certificate" loading="lazy">
+        <img src="assets/kratos/urc-certificate.png" class="media-photo" alt="URC certificate" loading="lazy">
 
       </div>
     </div>
   </section>
-  <!-- SOFT SKILLS -->
+
+  <!-- BEYOND THE CODE -->
   <section id="leadership">
     <div class="container">
-      <p class="section-label">Beyond the Code</p>
+      <div class="section-head reveal">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Beyond the Code</h2>
+        <span class="section-rule"></span>
+      </div>
       <div class="skill-list">
-        <div class="skill-item">
-          <div class="skill-dot"></div>
+        <div class="skill-item reveal">
+          <span class="skill-marker">01</span>
           <p>
-            <strong style="color:var(--text);">Team Leadership.</strong>
+            <strong>Team Leadership.</strong>
             Led the Controls subsystem as Controls Lead — managing timelines, coordinating
-            with mechanical and electronics subsystems, and making technical decisions under
+            with the mechanical and electronics subsystems, and making technical decisions under
             competition deadlines. Learned that getting a rover to work is as much
             about people coordination as it is about code.
           </p>
         </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
+        <div class="skill-item reveal">
+          <span class="skill-marker">02</span>
           <p>
-            <strong style="color:var(--text);">Mentorship — QSTP.</strong>
+            <strong>Mentorship — QSTP.</strong>
             Mentored junior students through BITS Goa's Quark Summer of Tech Programme (QSTP),
             introducing them to ROS, robot modelling, and autonomous systems. Seeing someone
             get their first robot moving in simulation is genuinely one of the more satisfying things.
           </p>
         </div>
-        <div class="skill-item">
-          <div class="skill-dot"></div>
+        <div class="skill-item reveal">
+          <span class="skill-marker">03</span>
           <p>
-            <strong style="color:var(--text);">Cross-disciplinary Collaboration.</strong>
-            Kratos is a multi-disciplinary team — CS, electronics, mechanical all working on
+            <strong>Cross-disciplinary Collaboration.</strong>
+            Kratos is a multi-disciplinary team — CS, electronics, and mechanical all working on
             the same robot. Learning to communicate across disciplines, agree on interfaces,
             and ship something that actually works together was probably the most valuable
             thing I took away from this project.
@@ -815,14 +384,14 @@
     </div>
   </section>
 
-  <!-- FOOTNOTE -->
-  <section id="note">
+  <!-- NOTE -->
+  <section id="note" class="alt">
     <div class="container">
-      <p class="section-label">A Note on Code Access</p>
-      <p style="max-width: 1200px;">
-        Most of the code from this role lives in private organisational repositories. So, unfortunately, I can't
-        link to it directly.
-      </p>
+      <div class="note-strip reveal">
+        <span class="note-label">A note on code access</span>
+        Most of the code from this role lives in private organisational repositories. So, unfortunately,
+        I can't link to it directly.
+      </div>
     </div>
   </section>
 
@@ -833,6 +402,7 @@
     </div>
   </footer>
 
+  <script src="js/site.js"></script>
 </body>
 
 </html>
