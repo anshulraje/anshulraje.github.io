@@ -1,7 +1,7 @@
 # Anshul Raje — Portfolio Website
 
 This is the personal portfolio website of Anshul Raje, a robotics engineer (quadrupeds,
-autonomous vehicles, ROS 2) starting his MS in Robotics Engineering at WPI in Fall 2026.
+autonomous vehicles, ROS 2) and an MS Robotics Engineering student at WPI.
 This directory is the main and only source for the site. It is plain HTML/CSS/JS — no
 framework, no build step, no server. Every page must work by opening the file directly
 in a browser (`file://`).
