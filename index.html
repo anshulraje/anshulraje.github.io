@@ -62,13 +62,13 @@
           I'm a robotics engineer and an MS Robotics Engineering student at WPI.
           My work spans locomotion control, state estimation, and perception systems —
           mostly on quadruped robots and autonomous vehicles, mostly in ROS 2.
-          I'm a U.S. citizen based in Worcester, MA.
+          I'm a U.S. citizen based in Boston, MA.
         </p>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-solid">Get in touch</a>
           <a href="https://linkedin.com/in/anshulraje" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
           <a href="https://github.com/anshulraje" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
-          <a href="assets/resumes/resume-aug-2026-v2.pdf" target="_blank" class="btn btn-outline">Résumé</a>
+          <a href="assets/resumes/resume-sep-2026.pdf" target="_blank" class="btn btn-outline">Résumé</a>
         </div>
       </div>
       <div class="hero-photo">
@@ -113,9 +113,9 @@
         <h2 class="section-title">Experience</h2>
         <span class="section-rule"></span>
       </div>
-      <div class="exp-list">
+      <div class="exp-list card-list">
 
-        <a href="strider.html" class="exp-item reveal">
+        <a href="strider.html" class="exp-item card-item reveal">
           <div class="exp-when">Aug 2024 — Apr 2026</div>
           <div>
             <div class="exp-org">Strider Robotics</div>
@@ -138,7 +138,7 @@
           </div>
         </a>
 
-        <a href="f110.html" class="exp-item reveal">
+        <a href="f110.html" class="exp-item card-item reveal">
           <div class="exp-when">Jul — Dec 2023</div>
           <div>
             <div class="exp-org">HiPeRT Lab, University of Modena</div>
@@ -160,7 +160,7 @@
           </div>
         </a>
 
-        <div class="exp-item reveal">
+        <div class="exp-item card-item reveal">
           <div class="exp-when">Jan — Apr 2022</div>
           <div>
             <div class="exp-org">Spaceonova</div>
@@ -190,67 +190,55 @@
         <h2 class="section-title">Projects</h2>
         <span class="section-rule"></span>
       </div>
-      <div class="projects-grid">
+      <div class="exp-list card-list">
 
-        <a href="kratos.html" class="project-card reveal">
-          <span class="card-label">2021 — 2023 · BITS Goa</span>
-          <h3>Project Kratos</h3>
-          <p>
-            Controls Lead for BITS Goa's Mars Rover team. Autonomous navigation,
-            a 5-DOF robotic arm, and international competition — 2nd place globally
-            at the Anatolian Rover Challenge.
-          </p>
-          <span class="card-cta">View project</span>
-        </a>
+        <div class="exp-item card-item reveal">
+          <div class="exp-when">Aug — Sep 2026</div>
+          <div>
+            <div class="exp-org">Attitude Estimation using a 6-DoF IMU<span class="org-links"><a
+                href="https://youtu.be/cGSoPlDG6GQ" target="_blank" rel="noopener" class="org-link">Video</a><a
+                href="assets/attitude/attitude-estimation-report.pdf" target="_blank" rel="noopener"
+                class="org-link">Report</a></span></div>
+            <p class="exp-role">State estimation · sensor fusion</p>
+            <p class="exp-desc">
+              Recovering orientation from a bare 6-DoF IMU — three axes of gyroscope, three of
+              accelerometer, no magnetometer. Five estimation methods benchmarked against Vicon
+              motion-capture ground truth across six flight sequences, with a quaternion-based
+              unscented Kalman filter coming out ahead at 14.6° mean orientation RMSE.
+            </p>
+            <div class="tags">
+              <span class="tag">State Estimation</span>
+              <span class="tag">Sensor Fusion</span>
+              <span class="tag">Unscented Kalman Filter</span>
+              <span class="tag">Madgwick Filter</span>
+              <span class="tag">Complementary Filter</span>
+              <span class="tag">IMU Calibration</span>
+              <span class="tag">Quaternions</span>
+              <span class="tag">Motion Capture</span>
+            </div>
+          </div>
+        </div>
 
-        <a href="f110.html" class="project-card reveal">
-          <span class="card-label">2023 · HiPeRT Lab</span>
-          <h3>F1/10 Autonomous Racing</h3>
-          <p>
-            Synthetic dataset generation for opponent detection and MPC-based
-            trajectory tracking on a 1/10th scale autonomous race car.
-          </p>
-          <span class="card-cta">View project</span>
-        </a>
-
-        <a href="strider.html" class="project-card reveal">
-          <span class="card-label">2024 — 2026 · Strider Robotics</span>
-          <h3>Quadruped Autonomy &amp; Perception</h3>
-          <p>
-            From locomotion control to a full perception orchestration framework —
-            two years building software for robots that walk and see in the real world.
-          </p>
-          <span class="card-cta">View project</span>
-        </a>
-
-        <a href="https://github.com/anshulraje/Stanley-Controller" target="_blank" rel="noopener" class="project-card reveal">
-          <span class="card-label">Open Source</span>
-          <h3>Stanley Controller</h3>
-          <p>
-            Implementation of the Stanley path-following controller in Python,
-            with a live visualiser. Used on the Kratos Mars Rover.
-          </p>
-          <span class="card-cta">View on GitHub</span>
-        </a>
-
-        <a href="https://github.com/anshulraje/follow-the-gap" target="_blank" rel="noopener" class="project-card reveal">
-          <span class="card-label">Open Source</span>
-          <h3>Follow The Gap</h3>
-          <p>
-            Implementation of the Follow The Gap algorithm for reactive obstacle
-            avoidance on an F1/10 racing car.
-          </p>
-          <span class="card-cta">View on GitHub</span>
-        </a>
-
-        <a href="https://github.com/anshulraje/srtp_urdf_resources" target="_blank" rel="noopener" class="project-card reveal">
-          <span class="card-label">Open Source</span>
-          <h3>Space Robotics Training Program</h3>
-          <p>
-            Resources and tutorials for Modules 10 &amp; 11 of Spaceonova's Space Robotics
-            Training Program, covering ROS, URDF, and robot modeling.
-          </p>
-          <span class="card-cta">View on GitHub</span>
+        <a href="kratos.html" class="exp-item card-item reveal">
+          <div class="exp-when">Sep 2021 — May 2023</div>
+          <div>
+            <div class="exp-org">Autonomous Navigation and Manipulation for a Mars Rover</div>
+            <p class="exp-role">Controls Lead · Project Kratos, BITS Goa</p>
+            <p class="exp-desc">
+              The autonomy and manipulation stack for BITS Goa's student Mars rover, where I led
+              the controls subsystem — hazard detection, waypoint navigation, and end-effector
+              control for a 5-DOF arm. The rover placed 2nd globally at the Anatolian Rover
+              Challenge.
+            </p>
+            <div class="tags">
+              <span class="tag">YOLOv3</span>
+              <span class="tag">Stanley Controller</span>
+              <span class="tag">Inverse Kinematics</span>
+              <span class="tag">Waypoint Navigation</span>
+              <span class="tag">ROS</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
         </a>
 
       </div>
@@ -268,12 +256,12 @@
       <div class="edu-list">
         <div class="edu-item reveal">
           <span class="edu-school">Worcester Polytechnic Institute</span>
-          <span class="edu-date">Aug 2026 — Present</span>
+          <span class="edu-date">Aug 2026 — May 2028</span>
           <span class="edu-degree">M.Sc. Robotics Engineering</span>
         </div>
         <div class="edu-item reveal">
           <span class="edu-school">BITS Pilani, K.K. Birla Goa Campus</span>
-          <span class="edu-date">Sept 2020 — Jul 2024</span>
+          <span class="edu-date">Sep 2020 — Jul 2024</span>
           <span class="edu-degree">B.E. Electronics and Communication Engineering · CGPA 8.04/10 (GPA: 3.401/4.0)</span>
         </div>
       </div>

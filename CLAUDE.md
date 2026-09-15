@@ -18,7 +18,7 @@ in a browser (`file://`).
 
 | Page | One-liner |
 |---|---|
-| `index.html` | Home: hero, signature animation band, Experience, Projects grid, Education, Contact |
+| `index.html` | Home: hero, signature animation band, Experience, Projects (same list layout as Experience), Education, Contact |
 | `strider.html` | Strider Robotics — quadruped autonomy & perception (richest page: timeline, stats, architecture) |
 | `f110.html` | F1/10 autonomous racing at HiPeRT Lab (simplest project page; also linked from the HiPeRT experience entry) |
 | `kratos.html` | Project Kratos Mars Rover at BITS Goa |
@@ -45,16 +45,20 @@ in a browser (`file://`).
   before `</body>`.
 - **Recurring components** (all defined in `style.css`): `.section-head` (numbered section
   headers `01 / Title` + rule), `.reveal` (entrance animation), `.tag`, `.btn-solid` /
-  `.btn-outline`, `.project-card`, `.exp-item` (an `<a>` when a detail page exists, a `<div>`
-  otherwise), `.tech-item`, `.phase-item` (timeline), `.stat-card`, `.arch-card` /
+  `.btn-outline`, `.exp-item` (an `<a>` when a detail page exists, a `<div>`
+  otherwise — the row used by **both** the Experience and Projects lists) + `.card-item`
+  (wraps that row in card chrome: border, shadow, hover lift and accent top bar; the lift
+  fires only on `<a>` entries) inside a `.exp-list.card-list`, `.tech-item`, `.phase-item` (timeline), `.stat-card`, `.arch-card` /
   `.layer-row`, `.video-card`, `.media-collage` / `.media-grid`, `.thesis-card`, `.note-strip`.
 
 ## How to extend
 
-- **New experience:** copy an `.exp-item` block in `index.html` (an `<a>` if it has a detail
-  page, a `<div>` if not). Keep reverse-chronological order.
-- **New project card:** copy a `.project-card` in the `#projects` grid. Internal pages use
-  `card-cta` text "View project"; GitHub links use "View on GitHub" with `target="_blank"`.
+- **New experience:** copy an `.exp-item card-item` block in `index.html` (an `<a>` if it has
+  a detail page, a `<div>` if not). Keep reverse-chronological order.
+- **New project:** copy an `.exp-item card-item` block in the `#projects` list — identical
+  component to Experience. Reverse-chronological. Keep the description to ~2 sentences: what
+  the project is, then the headline result; detail lives on the linked page. Add a `.tags` row
+  drawn from the résumé's "Tools & Techniques" line.
 - **New project page:** copy the closest existing project page (`f110.html` is the simplest,
   `strider.html` has the timeline/stats/architecture components) and swap content. Put its
   images in a new `assets/<page>/` folder. Add its card to `index.html`.
