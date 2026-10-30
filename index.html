@@ -68,7 +68,7 @@
           <a href="#contact" class="btn btn-solid">Get in touch</a>
           <a href="https://linkedin.com/in/anshulraje" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
           <a href="https://github.com/anshulraje" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
-          <a href="assets/resumes/resume-sep-2026.pdf" target="_blank" class="btn btn-outline">Résumé</a>
+          <a href="assets/resumes/resume-oct-2026.pdf" target="_blank" class="btn btn-outline">Résumé</a>
         </div>
       </div>
       <div class="hero-photo">
@@ -193,19 +193,21 @@
       <div class="exp-list card-list">
 
         <div class="exp-item card-item reveal">
-          <div class="exp-when">Sep 2026</div>
+          <div class="exp-when">Sep — Oct 2026</div>
           <div>
             <div class="exp-org">Quadrotor Navigation with RRT* Planning and Quintic Trajectories<span class="org-links"><a
-                href="https://youtu.be/hqVfIPhGR0c" target="_blank" rel="noopener" class="org-link">Video</a><a
+                href="https://youtu.be/7_CTK82YpS0" target="_blank" rel="noopener" class="org-link">Video</a><a
                 href="assets/quadrotor/quadrotor-navigation-report.pdf" target="_blank" rel="noopener"
                 class="org-link">Report</a></span></div>
             <p class="exp-role">Motion planning · trajectory generation · control</p>
             <p class="exp-desc">
-              Flying a simulated quadrotor through known 3D obstacle maps — an RRT* planner with
-              greedy shortcutting, a quintic spline continuous up to snap within velocity and
-              acceleration limits, and a tuned cascaded PID controller. The quadrotor reached the
-              goal without collision in 500+ randomized runs across two maps, tracking the
-              trajectory with a mean error of 14 cm.
+              Flying a quadrotor through known 3D obstacle maps, first in simulation and then on a
+              real Crazyflie — an RRT* planner with greedy shortcutting and a quintic spline
+              continuous up to snap within velocity and acceleration limits. In simulation a tuned
+              cascaded PID controller reached the goal without collision in 500+ randomized runs at
+              a 14 cm mean tracking error; on hardware, a pure pursuit velocity policy flew the
+              Crazyflie through a course of physical boxes under Vicon in 5.8 s, with a 2.9 cm mean
+              path error and no collision.
             </p>
             <div class="tags">
               <span class="tag">Motion Planning</span>
@@ -214,7 +216,10 @@
               <span class="tag">Trajectory Generation</span>
               <span class="tag">Quintic Splines</span>
               <span class="tag">Cascaded PID Control</span>
+              <span class="tag">Pure Pursuit</span>
               <span class="tag">Quadrotor Simulation</span>
+              <span class="tag">Vicon Motion Capture</span>
+              <span class="tag">Sim-to-Real Transfer</span>
             </div>
           </div>
         </div>
