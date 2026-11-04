@@ -195,6 +195,42 @@
         <div class="exp-item card-item reveal">
           <div class="exp-when">Oct — Nov 2026</div>
           <div>
+            <div class="exp-org">Perception-Driven Window Racing on a Quadrotor<span class="org-links"><a
+                href="https://youtu.be/bqR8Kdh-b4k" target="_blank" rel="noopener" class="org-link">Video</a><a
+                href="assets/window-racing/window-racing-report.pdf" target="_blank" rel="noopener"
+                class="org-link">Report</a></span></div>
+            <p class="exp-role">Perception · pose estimation · aerial autonomy</p>
+            <p class="exp-desc">
+              Flying a Crazyflie through three windows with no prior knowledge of where they are: a
+              YOLO26n-pose keypoint detector, fine-tuned on 25000 synthetic Blender images labeled
+              from scene geometry, locates the four inner corners of each window, planar PnP and
+              RANSAC fuse the sightings into a world-frame map of every gate's 6-DoF pose, and a
+              15 Hz state machine plans through them with RRT*. The detector reached 0.967 precision
+              and 0.933 recall on Gaussian splat renders of the course it never trained on, and
+              hardware-in-the-loop flights under Vicon cleared all three windows in 9.25 s on average
+              at a 20 ms median control tick.
+            </p>
+            <div class="tags">
+              <span class="tag">Synthetic Data Generation</span>
+              <span class="tag">Domain Randomization</span>
+              <span class="tag">Blender</span>
+              <span class="tag">Keypoint Detection</span>
+              <span class="tag">YOLO26</span>
+              <span class="tag">6-DoF Pose Estimation</span>
+              <span class="tag">PnP</span>
+              <span class="tag">RANSAC</span>
+              <span class="tag">ONNX Runtime</span>
+              <span class="tag">Edge Inference</span>
+              <span class="tag">State Machines</span>
+              <span class="tag">RRT*</span>
+              <span class="tag">Hardware-in-the-Loop</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item card-item reveal">
+          <div class="exp-when">Oct — Nov 2026</div>
+          <div>
             <div class="exp-org">Multi-View Point Cloud Grasping on a Kinova Gen3 Lite<span class="org-links"><a
                 href="https://www.youtube.com/shorts/apMWhhH7tAc" target="_blank" rel="noopener"
                 class="org-link">Video</a></span></div>
